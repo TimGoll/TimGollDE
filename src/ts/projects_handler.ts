@@ -1,4 +1,5 @@
 import { AjaxHandler } from "./ajax";
+import { Dictionary } from "./generic_types";
 
 export class ProjectsHandler {
     private ajax : AjaxHandler;
@@ -8,11 +9,19 @@ export class ProjectsHandler {
     };
 
     init() : void {
-        this.requestProjectsList();
+        //TODO this is obviously just a test function
+        this.requestProjectsList((data) => {
+            for (let key in data) {
+                let topic = data[key];
+                console.log(topic);
+                this.requestProject(topic['path'], (event) => {
+                    console.log(event)
+                })
+            }
+        });
     };
 
-
-    private requestProjectsList(type? : string) : void {
+    private requestProjectsList(callback: (event : Dictionary) => void, type? : string) : void {
         this.ajax.send({
             url: 'server/projects.php',
             contents: {
@@ -21,8 +30,16 @@ export class ProjectsHandler {
             },
             type: 'post',
             on_complete: (event) => {
-                console.log("test");
-                console.log(JSON.parse(event));
+                callback(JSON.parse(event));
+            }
+        });
+    };
+
+    private requestProject(path : string, callback: (event : Dictionary) => void) : void {
+        this.ajax.send({
+            url: path,
+            on_complete: (event) => {
+                callback(JSON.parse(event))
             }
         });
     };

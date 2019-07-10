@@ -2,7 +2,7 @@ export interface IAjax {
     url : string,
     contents? : Object,
     type? : string,
-    on_progress? : (event : Object) => void,
+    on_progress? : (event : any) => void,
     on_complete? : (event : string) => void
 };
 
