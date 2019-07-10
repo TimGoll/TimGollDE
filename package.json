@@ -1,0 +1,26 @@
+{
+  "name": "TimGollDE",
+  "version": "1.0.0",
+  "description": "This is my pricate portfolio website. To compile it into todays webstandards, following commands were used:\r ```\r less/css:\r lessc",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TimGoll/TimGollDE.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/TimGoll/TimGollDE/issues"
+  },
+  "homepage": "https://github.com/TimGoll/TimGollDE#readme",
+  "devDependencies": {
+    "webpack": "^4.35.3",
+    "webpack-cli": "^3.3.5",
+    "less": "^3.9.0",
+    "typescript": "^3.5.3"
+  }
+}
