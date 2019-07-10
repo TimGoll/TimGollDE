@@ -1,37 +1,42 @@
-export interface ICallbacks {
+export interface IAjax {
+    url : string,
+    contents? : Object,
+    type? : string,
     on_progress? : (event : Object) => void,
-    on_complete? : (event : Object) => void
+    on_complete? : (event : string) => void
 };
 
 export class AjaxHandler {
-    should_cache : boolean;
+    private should_cache : boolean;
 
     constructor(shoud_cache : boolean) {
         this.should_cache = shoud_cache;
     }
 
-    transmit (url : string, data? : Object, callbacks? : ICallbacks) : void {
+    send(params : IAjax) : void {
         let xmlhttp = new XMLHttpRequest();
 
         xmlhttp.onreadystatechange = () => {
             if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
-                if (callbacks !== undefined && callbacks.on_complete !== undefined)
-                    callbacks.on_complete(xmlhttp.responseText);
+                if (params.on_complete !== undefined)
+                    params.on_complete(xmlhttp.responseText);
         };
 
         xmlhttp.onprogress = (event) => {
-            if (callbacks !== undefined && callbacks.on_progress !== undefined)
-                callbacks.on_progress(event)
+            if (params.on_progress !== undefined)
+                params.on_progress(event)
         };
 
-        if (!this.should_cache)
-            url += '?nocache=' + Math.random() * 1000000
+        if (this.should_cache === false)
+            params.url += '?nocache=' + Math.random() * 1000000
 
-        xmlhttp.open('GET', url);
-        xmlhttp.send(JSON.stringify(data));
+        if (params.type === undefined)
+            params.type = 'get'
+
+        let form_data = new FormData();
+        form_data.append('data', JSON.stringify(params.contents));
+
+        xmlhttp.open(params.type, params.url);
+        xmlhttp.send(form_data);
     };
-
-    request (url : string, callbacks? : ICallbacks) : void {
-        this.transmit(url, callbacks, {});
-    }
 }

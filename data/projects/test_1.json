@@ -1,0 +1,12 @@
+{
+    "topics": ["web", "hardware"],
+    "date": "date todo",
+    "title": "A testing chapter",
+    "intro": "A small text about the basic information",
+    "body": [
+        {
+            "type": "text",
+            "text": "Hallo Welt!"
+        }
+    ]
+}

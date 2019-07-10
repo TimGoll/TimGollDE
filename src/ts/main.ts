@@ -1,8 +1,6 @@
-import { ProjectHandler } from "./project_handler";
+import { ProjectsHandler } from "./projects_handler";
 
 window.onload = () => {
-    console.log("Test")
-
-    let project_handler = new ProjectHandler();
-    project_handler.init()
+    let projects_handler = new ProjectsHandler();
+    projects_handler.init()
 }
