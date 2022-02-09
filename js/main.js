@@ -6,7 +6,7 @@ async function setup() {
 	let markdown = await integration.requestFile({
 		origin : "https://raw.githubusercontent.com",
 		owner : "TimGoll",
-		repository : "multiprocessing",
+		repository : "TimGoll",
 		file : "README.md"
 	});
 
@@ -17,7 +17,7 @@ async function setup() {
 	let html = await integration.parseMarkdown({
 		text: markdown,
 		mode: "gfm",
-		context : "TimGoll/multiprocessing"
+		context : "TimGoll/TimGoll"
 	})
 
 	console.log(Date.now());

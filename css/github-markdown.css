@@ -1,6 +1,5 @@
 @media (prefers-color-scheme: dark) {
   .markdown-body {
-    color-scheme: dark;
     --color-prettylights-syntax-comment: #8b949e;
     --color-prettylights-syntax-constant: #79c0ff;
     --color-prettylights-syntax-entity: #d2a8ff;
@@ -34,7 +33,7 @@
     --color-fg-default: #c9d1d9;
     --color-fg-muted: #8b949e;
     --color-fg-subtle: #484f58;
-    --color-canvas-default: #0d1117;
+    --color-canvas-default: #23272E;
     --color-canvas-subtle: #161b22;
     --color-border-default: #30363d;
     --color-border-muted: #21262d;
@@ -48,7 +47,6 @@
 
 @media (prefers-color-scheme: light) {
   .markdown-body {
-    color-scheme: light;
     --color-prettylights-syntax-comment: #6e7781;
     --color-prettylights-syntax-constant: #0550ae;
     --color-prettylights-syntax-entity: #8250df;
