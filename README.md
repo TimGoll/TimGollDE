@@ -1,18 +1,12 @@
 # TimGollDE
 
-This is my pricate portfolio website. To compile it into todays webstandards, following commands were used:
+This is my private portfolio website based on GitHub repositories. Feel free to fork it and use it as your own website.
 
-``` txt
-// first setup
-npm install
+## Used External Sources
 
-// less/css:
-lessc
+- [GitHub Markdown Stylesheet](https://github.com/sindresorhus/github-markdown-css): The GitHub stylesheets
+- [OctoKit](https://github.com/octokit/core.js): A neat library to handle REST API calls
 
-// typescript/javascript:
-tsc    // single compile
-tsc -w // infinite compile
+## Licence
 
-// webpack
-npx webpack --config webpack.config.js
-```
+MIT
