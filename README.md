@@ -9,4 +9,4 @@ This is my private portfolio website based on GitHub repositories. Feel free to 
 
 ## Licence
 
-MIT
+[MIT](LICENSE)
