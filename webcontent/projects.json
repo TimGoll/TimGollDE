@@ -1,0 +1,16 @@
+[
+	{
+		"name" : "Project A",
+		"owner" : "TimGoll",
+		"id" : "project_a",
+		"date" : "",
+		"repo_based" : true,
+		"default_branch" : "master"
+	},
+	{
+		"name" : "Project B",
+		"id" : "project_b",
+		"date" : "",
+		"repo_based" : false
+	}
+]

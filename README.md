@@ -7,6 +7,6 @@ This is my private portfolio website based on GitHub repositories. Feel free to 
 - [GitHub Markdown Stylesheet](https://github.com/sindresorhus/github-markdown-css): The GitHub stylesheets
 - [OctoKit](https://github.com/octokit/core.js): A neat library to handle REST API calls
 
-## Licence
+## License
 
 [MIT](LICENSE)
