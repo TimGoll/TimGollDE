@@ -8,15 +8,13 @@ async function requestImage(name, obj) {
     let image = await integration.requestGitHubImageFile({
         origin: "https://raw.githubusercontent.com",
         owner: "TimGoll",
-        repository: "pcb_atmega328p",
-        defaultBranch: "main",
-        file: "assets/config_util.png"
+        repository: "TimGollDE",
+        defaultBranch: "master",
+        file: "assets/" + name + ".png"
     });
 
-    console.log(image);
-
     if (image != undefined) {
-        document.getElementById("test").src = image
+        obj.src = image
     }
 }
 
@@ -61,15 +59,14 @@ async function setupProjects() {
     let domBuilderProjects = new DOMBuilder(document.getElementById("projects"));
 
     projects.forEach(project => {
-        console.log(project)
         let domBuilderContent = domBuilderProjects
             .build("div", { class: "mb-3 d-flex flex-content-stretch col-12 col-md-6 col-lg-4" })
             .build("div", { class: "Box of-hidden d-flex width-full project-list-item-item" })
             .build("div", { class: "project-list-item-content" });
 
-        domBuilderContent
+        let img = domBuilderContent
             .build("div", { class: "d-flex flex-grow-2 of-hidden img-project" })
-            .build("img", { class: "object-fit-cover w-100 h-100", src: "https://cdn.pixabay.com/photo/2018/08/21/23/29/forest-3622519__340.jpg" });
+            .build("img", { class: "object-fit-cover w-100 h-100", src: "img/no_icon.png" });
 
         let domBuilderText = domBuilderContent
             .build("div", { class: "d-flex flex-dir-col flex-grow-1 p-3" });
@@ -79,11 +76,9 @@ async function setupProjects() {
 
         domBuilderText
             .build("p", { innerHTML: project.desc });
+
+        requestImage(project.id, img.lastElement);
     });
-
-    //console.log(projects);
-
-    requestImage();
 }
 
 setupInfo();

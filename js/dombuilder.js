@@ -17,4 +17,8 @@ export default class DOMBuilder {
 
         return new DOMBuilder(this.elem);
     }
+
+    get lastElement() {
+        return this.parent;
+    }
 }
