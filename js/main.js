@@ -20,6 +20,35 @@ async function requestImage(name, obj) {
     }
 }
 
+async function requestMarkdownText(data = { origin: "", owner: "", repository: "", defautBranch: "", file: "" }) {
+    let markdown = await integration.requestGitHubTextFile(data);
+
+    markdown = linkFixer.fixLinks(markdown, data);
+
+    let html = await integration.parseMarkdown({
+        text: markdown,
+        mode: "gfm",
+        context: data.owner + "/" + data.repository
+    });
+
+    return html
+}
+
+/** SETUP FUNCTIONS **/
+
+async function setupInfo() {
+    let html = await requestMarkdownText({
+        origin: "https://raw.githubusercontent.com",
+        owner: "TimGoll",
+        repository: "TimGoll",
+        defautBranch: "main",
+        file: "README.md"
+    })
+
+    document.getElementById("content").innerHTML = html;
+}
+
+
 async function setupProjects() {
     projects = JSON.parse(await integration.requestGitHubTextFile({
         origin: "https://raw.githubusercontent.com",
@@ -57,38 +86,5 @@ async function setupProjects() {
     requestImage();
 }
 
-
-
-linkFixer.fixLinks("Hallo Welt [Title](link.url)! Hier kommt noch ein Text. ![Bild alt title](bild.url) [[Doppel Klammern]](sollten.auch.gehen). [etwas] anderes (hier)");
-
-setupProjects()
-
-
-
-
-
-
-async function setup() {
-    let markdown = await integration.requestGitHubTextFile({
-        origin: "https://raw.githubusercontent.com",
-        owner: "TimGoll",
-        repository: "TimGoll",
-        file: "README.md"
-    });
-
-    let html = await integration.parseMarkdown({
-        text: markdown,
-        mode: "gfm",
-        context: "TimGoll/TimGoll"
-    })
-
-    document.getElementById("content").innerHTML = html;
-
-    let dombuider = new DOMBuilder(document.getElementById("content"));
-
-    dombuider
-        .build("div", { class: "abc" })
-        .build("a", { href: "abc.def", class: "def" });
-}
-
-setup();
+setupInfo();
+setupProjects();
