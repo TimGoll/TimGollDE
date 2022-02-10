@@ -1,4 +1,5 @@
 import * as integration from "./integration.js";
+import * as linkFixer from "./linkfixer.js";
 import DOMBuilder from "./dombuilder.js";
 
 var projects = [];
@@ -58,8 +59,10 @@ async function setupProjects() {
 
 
 
+linkFixer.fixLinks("Hallo Welt [Title](link.url)! Hier kommt noch ein Text. ![Bild alt title](bild.url) [[Doppel Klammern]](sollten.auch.gehen). [etwas] anderes (hier)");
 
 setupProjects()
+
 
 
 
