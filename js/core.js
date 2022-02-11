@@ -3,6 +3,7 @@ import * as linkFixer from "./linkfixer.js";
 import DOMBuilder from "./dombuilder.js";
 
 var projects = [];
+var lastScrollPos = 0;
 
 async function requestImage(name, obj) {
     let image = await integration.requestGitHubImageFile({
@@ -10,7 +11,7 @@ async function requestImage(name, obj) {
         owner: "TimGoll",
         repository: "TimGollDE",
         defaultBranch: "master",
-        file: "assets/" + name + ".png"
+        file: "webcontent/assets/" + name + ".png"
     });
 
     if (image != undefined) {
@@ -43,7 +44,7 @@ async function setupInfo() {
         file: "README.md"
     })
 
-    document.getElementById("content").innerHTML = html;
+    document.getElementById("bio").innerHTML = html;
 }
 
 
@@ -58,11 +59,13 @@ async function setupProjects() {
 
     let domBuilderProjects = new DOMBuilder(document.getElementById("projects"));
 
-    projects.forEach(project => {
+    for (let i = 0; i < projects.length; i++) {
+        let project = projects[i];
+
         let domBuilderContent = domBuilderProjects
             .build("div", { class: "mb-3 d-flex flex-content-stretch col-12 col-md-6 col-lg-4" })
-            .build("div", { class: "Box of-hidden d-flex width-full project-list-item-item" })
-            .build("div", { class: "project-list-item-content" });
+            .build("div", { class: "Box of-hidden d-flex width-full project-list-x-item" })
+            .build("div", { class: "project-list-item-content", project: i });
 
         let img = domBuilderContent
             .build("div", { class: "d-flex flex-grow-2 of-hidden img-project" })
@@ -77,8 +80,30 @@ async function setupProjects() {
         domBuilderText
             .build("p", { innerHTML: project.desc });
 
+        domBuilderContent.lastElement.addEventListener("click", openProject);
+
         requestImage(project.id, img.lastElement);
-    });
+    }
+}
+
+async function openProject() {
+    let num = parseInt(this.getAttribute("project"));
+
+    // cache the last scroll position and reset the scroll pos to 0
+    lastScrollPos = window.scrollY;
+    window.scroll(0, 0);
+
+    // hide landing page
+    document.getElementById("landing").setAttribute("style", "display: none;")
+
+    // unhide popup
+    document.getElementById("popup").setAttribute("style", "display: block;")
+
+    // populate popup
+}
+
+function closeProject() {
+
 }
 
 setupInfo();

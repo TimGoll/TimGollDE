@@ -46,7 +46,25 @@
         }
     </style>
 
-    <script type="module" src="js/main.js"></script>
+    <script type="text/javascript">
+        var lastScroll = 0;
+
+        function open() {
+            lastScroll = window.scrollY;
+            window.scroll(0, 0);
+
+            document.getElementById("main").setAttribute("style", "display: none;");
+            document.getElementById("popup").setAttribute("style", "display: block;");
+        }
+
+        function close() {
+            document.getElementById("main").setAttribute("style", "display: block;");
+            document.getElementById("popup").setAttribute("style", "display: none;");
+            window.scroll(0, lastScroll);
+        }
+    </script>
+
+    <script type="module" src="js/core.js"></script>
 
     <meta charset="UTF-8" />
     <meta http-equiv="language" content="en" />
@@ -55,25 +73,34 @@
 </head>
 
 <body>
-    <div id="content" class="markdown-body">
+    <div id="landing">
+        <div id="bio" class="markdown-body">
+        </div>
 
-    </div>
+        <div class="markdown-body">
+            <div>
+                <h1 dir="auto" class="mt-0">
+                    My Projects
+                </h1>
 
-    <div class="markdown-body">
-        <div>
-            <h1 dir="auto" class="mt-0">
-                My Projects
-            </h1>
-
-            <div id="projects" class="d-flex flex-wrap list-style-none gutter-condensed mb-2 pl-0">
-
+                <div id="projects" class="d-flex flex-wrap list-style-none gutter-condensed mb-2 pl-0">
+                </div>
             </div>
         </div>
-    </div>
+
+        <div class="markdown-body">
+            Impressum - Contact - Source
+        </div>
     </div>
 
-    <div class="markdown-body">
-        Impressum - Contact - Source
+    <div id="popup" class="markdown-body" style="display: none;">
+        <div class="fullpanel" style="background-color: red;">
+            <div class="popup-header">
+            </div>
+            <div class="markdown-body" style="margin-top: 75px; min-height: calc(100% - 75px); position: relative;">
+                abc<br>def<br>abc<br>abc<br>def<br>abc<br>abc<br>def<br>abc<br>abc<br>def<br>abc<br>abc<br>def<br>abc<br>abc<br>def<br>abc<br>abc<br>def<br>abc<br>abc<br>def<br>abc<br>abc<br>def<br>abc<br>abc<br>def<br>abc<br>abc<br>def<br>abc<br>abc<br>def<br>abc<br>abc<br>def<br>abc<br>abc<br>def<br>abc<br>abc<br>def<br>abc<br>abc<br>def<br>abc<br>abc<br>def<br>abc<br>abc<br>def<br>abc<br>
+            </div>
+        </div>
     </div>
 </body>
 

@@ -22,17 +22,36 @@
     overflow: hidden;
 }
 
-.markdown-body .w-100 {
-    width: 100%;
-}
-
-.markdown-body .h-100 {
-    height: 100%;
-}
-
 .markdown-body .img-project {
     width: 100%;
     height: 65%;
+}
+
+.markdown-body .fullpanel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+.markdown-body .popup-header {
+    color: var(--color-header-text);
+    background-color: var(--color-header-bg);
+    height: 75px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.h-100 {
+    height: 100%;
 }
 
 .flex-grow-1 {
