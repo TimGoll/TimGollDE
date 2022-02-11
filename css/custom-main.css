@@ -3,6 +3,7 @@
     border-color: var(--color-border-default);
     background: none;
     height: 350px;
+    cursor: pointer;
 }
 
 .markdown-body .project-list-item-item:hover {
@@ -32,7 +33,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    min-height: 100%;
+    height: 100%;
 }
 
 .markdown-body .popup-header {
@@ -44,6 +45,37 @@
     top: 0;
     left: 0;
     z-index: 2;
+}
+
+.markdown-body .popup-header-content {
+    margin: 0 auto;
+    height: 100%;
+}
+
+.markdown-body .popup-header-title {
+    width: calc(100% - 75px);
+    height: 100%;
+    float: left;
+}
+
+.markdown-body .popup-header-button {
+    width: 75px;
+    height: 75px;
+    cursor: pointer;
+    float: left;
+    opacity: 0.5;
+    background-image: url(../img/icon_close_light.png);
+    background-size: 25px 25px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.markdown-body .popup-header-button:hover {
+    opacity: 0.8;
+}
+
+.markdown-body .border-none {
+    border: none;
 }
 
 .w-100 {
@@ -60,7 +92,6 @@
 
 .flex-grow-2 {
     flex: 2 !important;
-    background-color: blue;
 }
 
 .flex-dir-col {

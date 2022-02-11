@@ -36,15 +36,13 @@ async function requestMarkdownText(data = { origin: "", owner: "", repository: "
 /** SETUP FUNCTIONS **/
 
 async function setupInfo() {
-    let html = await requestMarkdownText({
+    document.getElementById("bio").innerHTML = await requestMarkdownText({
         origin: "https://raw.githubusercontent.com",
         owner: "TimGoll",
         repository: "TimGoll",
         defautBranch: "main",
         file: "README.md"
     })
-
-    document.getElementById("bio").innerHTML = html;
 }
 
 
@@ -64,7 +62,7 @@ async function setupProjects() {
 
         let domBuilderContent = domBuilderProjects
             .build("div", { class: "mb-3 d-flex flex-content-stretch col-12 col-md-6 col-lg-4" })
-            .build("div", { class: "Box of-hidden d-flex width-full project-list-x-item" })
+            .build("div", { class: "Box of-hidden d-flex width-full project-list-item-item" })
             .build("div", { class: "project-list-item-content", project: i });
 
         let img = domBuilderContent
@@ -97,14 +95,50 @@ async function openProject() {
     document.getElementById("landing").setAttribute("style", "display: none;")
 
     // unhide popup
-    document.getElementById("popup").setAttribute("style", "display: block;")
+    document.getElementById("popup").setAttribute("style", "display: block; min-height: 100%;")
 
-    // populate popup
+    let project = projects[num];
+
+    // populate
+    document.getElementById("project-title").innerHTML = project.name;
+
+    console.log(project);
+
+    if (project.repo_based == true) {
+        document.getElementById("project-text").innerHTML = await requestMarkdownText({
+            origin: "https://raw.githubusercontent.com",
+            owner: project.owner,
+            repository: project.id,
+            defautBranch: project.default_branch,
+            file: "README.md"
+        });
+    }
 }
 
 function closeProject() {
+    document.getElementById("project-title").innerHTML = "";
+    document.getElementById("project-text").innerHTML = "";
 
+    document.getElementById("landing").setAttribute("style", "display: block;");
+    document.getElementById("popup").setAttribute("style", "display: none;");
+    window.scroll(0, lastScrollPos);
 }
+
+window.addEventListener("load", function() {
+    document.getElementById("button-close").addEventListener("mouseup", closeProject);
+})
+
+window.addEventListener('keyup', function(e) {
+    if (e.defaultPrevented) {
+        return;
+    }
+
+    var key = e.key || e.keyCode;
+
+    if (key === 'Escape' || key === 'Esc' || key === 27) {
+        closeProject();
+    }
+});
 
 setupInfo();
 setupProjects();
