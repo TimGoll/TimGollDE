@@ -1,5 +1,4 @@
 import * as integration from "./integration.js";
-import * as linkFixer from "./linkfixer.js";
 import DOMBuilder from "./dombuilder.js";
 
 var projects = [];
@@ -19,41 +18,20 @@ async function requestImage(name, obj) {
     }
 }
 
-async function requestMarkdownText(data = { origin: "", owner: "", repository: "", defautBranch: "", file: "" }) {
-    let markdown = await integration.requestGitHubTextFile(data);
-
-    markdown = linkFixer.fixLinks(markdown, data);
-
-    let html = await integration.parseMarkdown({
-        text: markdown,
-        mode: "gfm",
-        context: data.owner + "/" + data.repository
-    });
-
-    return html
-}
-
 /** SETUP FUNCTIONS **/
 
 async function setupInfo() {
-    document.getElementById("bio").innerHTML = await requestMarkdownText({
-        origin: "https://raw.githubusercontent.com",
+    document.getElementById("bio").innerHTML = await integration.requestCachedParsedMarkdownFile({
         owner: "TimGoll",
         repository: "TimGoll",
         defautBranch: "main",
-        file: "README.md"
+        file: "README.html"
     })
 }
 
 
 async function setupProjects() {
-    projects = JSON.parse(await integration.requestGitHubTextFile({
-        origin: "https://raw.githubusercontent.com",
-        owner: "TimGoll",
-        repository: "TimGollDE",
-        defaultBranch: "master",
-        file: "webcontent/projects.json"
-    }));
+    projects = await integration.requestCachedProjectData();
 
     let domBuilderProjects = new DOMBuilder(document.getElementById("projects"));
 
@@ -102,15 +80,19 @@ async function openProject() {
     // populate
     document.getElementById("project-title").innerHTML = project.name;
 
-    console.log(project);
-
     if (project.repo_based == true) {
-        document.getElementById("project-text").innerHTML = await requestMarkdownText({
-            origin: "https://raw.githubusercontent.com",
+        document.getElementById("project-text").innerHTML = await integration.requestCachedParsedMarkdownFile({
             owner: project.owner,
             repository: project.id,
             defautBranch: project.default_branch,
-            file: "README.md"
+            file: "README.html"
+        });
+    } else {
+        document.getElementById("project-text").innerHTML = await integration.requestCachedParsedMarkdownFile({
+            owner: "TimGoll",
+            repository: "TimGollDE",
+            defautBranch: "master",
+            file: project.id + ".html"
         });
     }
 }

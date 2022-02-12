@@ -1,0 +1,5 @@
+#always redirect to basefile (index.html)
+RewriteEngine On
+RewriteBase /
+RewriteCond %{REQUEST_URI} !.*/src/.*
+RewriteRule ^(.*)$ index.html [L,QSA,NE]

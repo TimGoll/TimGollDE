@@ -1,16 +1,9 @@
-import { Octokit } from "https://cdn.skypack.dev/@octokit/core";
-
-const octokit = new Octokit();
-
-export async function requestGitHubTextFile({ origin = "", owner = "", repository = "", defautBranch = "master", file = "" } = {}) {
-    const path = origin + "/" + owner + "/" + repository + "/" + defautBranch + "/" + file;
+export async function requestCachedFile(relPath) {
+    const path = "//" + window.location.hostname + "/src/cache/" + relPath;
     const utf8Decoder = new TextDecoder('utf-8');
 
     const response = await fetch(path, {
-        credentials: "omit",
-        headers: {
-            "Content-Type": "text/plain"
-        }
+        credentials: "omit"
     })
 
     const reader = response.body.getReader();
@@ -24,7 +17,15 @@ export async function requestGitHubTextFile({ origin = "", owner = "", repositor
         content += readerData.value ? utf8Decoder.decode(readerData.value) : "";
     } while (!readerData.done);
 
-    return content
+    return content;
+}
+
+export async function requestCachedParsedMarkdownFile({ owner = "", repository = "", defautBranch = "master", file = "" } = {}) {
+    return await requestCachedFile(owner + "/" + repository + "/" + defautBranch + "/" + file);
+}
+
+export async function requestCachedProjectData() {
+    return JSON.parse(await requestCachedFile("projects.json"));
 }
 
 export async function requestGitHubImageFile({ origin = "", owner = "", repository = "", defautBranch = "master", file = "" } = {}) {
@@ -34,21 +35,7 @@ export async function requestGitHubImageFile({ origin = "", owner = "", reposito
         credentials: "omit"
     })
 
-    //console.log(response.blob())
-
     if (response.ok) {
         return URL.createObjectURL(await response.blob());
-    }
-}
-
-export async function parseMarkdown({ text = "text", mode = "markdown", context = "" } = {}) {
-    const response = await octokit.request("POST /markdown", {
-        text: text,
-        mode: mode,
-        context: context
-    })
-
-    if (response.status == 200) {
-        return response.data
     }
 }
