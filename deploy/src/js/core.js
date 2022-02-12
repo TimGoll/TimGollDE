@@ -6,10 +6,10 @@ var lastScrollPos = 0;
 
 async function requestImage(name, obj) {
     let image = await integration.requestGitHubImageFile({
-        origin: "https://raw.githubusercontent.com",
-        owner: "TimGoll",
-        repository: "TimGollDE",
-        defaultBranch: "master",
+        origin: config.origin,
+        owner: config.core.owner,
+        repository: config.core.repository,
+        defaultBranch: config.core.defaultBranch,
         file: "webcontent/assets/" + name + ".png"
     });
 
@@ -22,9 +22,9 @@ async function requestImage(name, obj) {
 
 async function setupInfo() {
     document.getElementById("bio").innerHTML = await integration.requestCachedParsedMarkdownFile({
-        owner: "TimGoll",
-        repository: "TimGoll",
-        defautBranch: "main",
+        owner: config.bio.owner,
+        repository: config.bio.repository,
+        defaultBranch: config.bio.defaultBranch,
         file: "README.html"
     })
 }
@@ -89,9 +89,9 @@ async function openProject() {
         });
     } else {
         document.getElementById("project-text").innerHTML = await integration.requestCachedParsedMarkdownFile({
-            owner: "TimGoll",
-            repository: "TimGollDE",
-            defautBranch: "master",
+            owner: config.core.owner,
+            repository: config.core.repository,
+            defaultBranch: config.core.defaultBranch,
             file: project.id + ".html"
         });
     }

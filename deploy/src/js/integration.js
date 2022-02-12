@@ -20,16 +20,16 @@ export async function requestCachedFile(relPath) {
     return content;
 }
 
-export async function requestCachedParsedMarkdownFile({ owner = "", repository = "", defautBranch = "master", file = "" } = {}) {
-    return await requestCachedFile(owner + "/" + repository + "/" + defautBranch + "/" + file);
+export async function requestCachedParsedMarkdownFile({ owner = "", repository = "", defaultBranch = "master", file = "" } = {}) {
+    return await requestCachedFile(owner + "/" + repository + "/" + defaultBranch + "/" + file);
 }
 
 export async function requestCachedProjectData() {
     return JSON.parse(await requestCachedFile("projects.json"));
 }
 
-export async function requestGitHubImageFile({ origin = "", owner = "", repository = "", defautBranch = "master", file = "" } = {}) {
-    const path = origin + "/" + owner + "/" + repository + "/" + defautBranch + "/" + file;
+export async function requestGitHubImageFile({ origin = "", owner = "", repository = "", defaultBranch = "master", file = "" } = {}) {
+    const path = origin + "/" + owner + "/" + repository + "/" + defaultBranch + "/" + file;
 
     const response = await fetch(path, {
         credentials: "omit"
