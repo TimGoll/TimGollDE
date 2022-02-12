@@ -67,7 +67,7 @@ async function setupProjects() {
 
         let img = domBuilderContent
             .build("div", { class: "d-flex flex-grow-2 of-hidden img-project" })
-            .build("img", { class: "object-fit-cover w-100 h-100", src: "img/no_icon.png" });
+            .build("img", { class: "object-fit-cover w-100 h-100", src: "src/img/no_icon.png" });
 
         let domBuilderText = domBuilderContent
             .build("div", { class: "d-flex flex-dir-col flex-grow-1 p-3" });
