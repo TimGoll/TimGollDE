@@ -71,7 +71,7 @@ async function setupProjects() {
 
         let domBuilderContent = domBuilderProjects
             .build("div", { class: "mb-3 d-flex flex-content-stretch col-12 col-md-6 col-lg-4" })
-            .build("div", { class: "Box of-hidden d-flex width-full project-list-item-item" })
+            .build("div", { class: "Box of-hidden d-flex w-100 project-list-item-item" })
             .build("div", { class: "project-list-item-content", project: i });
 
         let img = domBuilderContent
