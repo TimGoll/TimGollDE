@@ -58,12 +58,16 @@ async function setupProjects() {
     projects = await integration.requestCachedProjectData();
 
     // after the project table is available, the page should be set
-    setPage(window.location.pathname.substr(1));
+    setPage(window.location.pathname.substr(1), true);
 
     let domBuilderProjects = new DOMBuilder(document.getElementById("projects"));
 
     for (let i = 0; i < projects.length; i++) {
         let project = projects[i];
+
+        if (project.hidden) {
+            continue;
+        }
 
         let domBuilderContent = domBuilderProjects
             .build("div", { class: "mb-3 d-flex flex-content-stretch col-12 col-md-6 col-lg-4" })

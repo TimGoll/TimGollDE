@@ -70,7 +70,9 @@ function cache_file($project, $config) {
 		$html = request_markdown($config["owner"], $config["api_key"], $markdown, "gfm", $config["owner"] . "/" . $project["id"]);
 	}
 
-	mkdir($html_path, 0777, true);
+	if (!is_dir($html_path)) {
+		mkdir($html_path, 0777, true);
+	}
 	file_put_contents($html_file, $html);
 }
 

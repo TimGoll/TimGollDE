@@ -1,7 +1,8 @@
 [{
         "name": "Legal Notice",
         "id": "legal",
-        "repo_based": false
+        "repo_based": false,
+        "hidden": true
     },
 
     {
