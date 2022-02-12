@@ -20,6 +20,10 @@ async function requestImage(name, obj) {
 
 /** SETUP FUNCTIONS **/
 
+function setupCore() {
+    window.document.title = config.title;
+}
+
 async function setupInfo() {
     document.getElementById("bio").innerHTML = await integration.requestCachedParsedMarkdownFile({
         owner: config.bio.owner,
@@ -32,6 +36,9 @@ async function setupInfo() {
 
 async function setupProjects() {
     projects = await integration.requestCachedProjectData();
+
+    // after the project table is available, the page should be set
+    setPage(window.location.pathname.substr(1));
 
     let domBuilderProjects = new DOMBuilder(document.getElementById("projects"));
 
@@ -62,8 +69,31 @@ async function setupProjects() {
     }
 }
 
-async function openProject() {
-    let num = parseInt(this.getAttribute("project"));
+async function openProject(_, project_id, preventStatePush) {
+    // if a specific project should be opened this parameter is set
+    let num = -1;
+
+    if (project_id !== undefined) {
+        for (let i = 0; i < projects.length; i++) {
+            let project = projects[i];
+
+            if (project.id == project_id) {
+                num = i;
+
+                break;
+            }
+        }
+
+        // if the project id wasn't found, redirect to landing page
+        if (num == -1) {
+            closeProject();
+
+            return;
+        }
+    } else {
+        num = parseInt(this.getAttribute("project"));
+    }
+
 
     // cache the last scroll position and reset the scroll pos to 0
     lastScrollPos = window.scrollY;
@@ -84,7 +114,7 @@ async function openProject() {
         document.getElementById("project-text").innerHTML = await integration.requestCachedParsedMarkdownFile({
             owner: project.owner,
             repository: project.id,
-            defautBranch: project.default_branch,
+            defaultBranch: project.default_branch,
             file: "README.html"
         });
     } else {
@@ -95,15 +125,33 @@ async function openProject() {
             file: project.id + ".html"
         });
     }
+
+    if (!preventStatePush) {
+        window.history.pushState({}, "", project.id);
+    }
+    window.document.title = config.title + " // " + project.name;
 }
 
-function closeProject() {
+function closeProject(_, preventStatePush) {
     document.getElementById("project-title").innerHTML = "";
     document.getElementById("project-text").innerHTML = "";
 
     document.getElementById("landing").setAttribute("style", "display: block;");
     document.getElementById("popup").setAttribute("style", "display: none;");
     window.scroll(0, lastScrollPos);
+
+    if (!preventStatePush) {
+        window.history.pushState({}, "", "/");
+    }
+    window.document.title = config.title;
+}
+
+function setPage(project_id, preventStatePush) {
+    if (project_id != "") {
+        openProject(undefined, project_id, preventStatePush);
+    } else {
+        closeProject(undefined, preventStatePush);
+    }
 }
 
 window.addEventListener("load", function() {
@@ -122,5 +170,16 @@ window.addEventListener('keyup', function(e) {
     }
 });
 
+//catch history change events
+window.onpopstate = function() {
+    setPage(window.location.pathname.substr(1), true);
+
+    // hacky solution to guarantee that the scrolling is reset
+    window.setTimeout(function() {
+        window.scroll(0, lastScrollPos);
+    }, 0);
+};
+
+setupCore();
 setupInfo();
 setupProjects();
