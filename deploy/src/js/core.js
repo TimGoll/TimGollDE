@@ -22,6 +22,26 @@ async function requestImage(name, obj) {
 
 function setupCore() {
     window.document.title = config.title;
+
+    let domBuilderFooter = new DOMBuilder(document.getElementById("footer"));
+
+    domBuilderFooter
+        .build("a", { href: "/legal" })
+        .lastElement.innerHTML = "Legal Notice";
+
+    domBuilderFooter.lastElement.innerHTML += " - ";
+
+    domBuilderFooter
+        .build("a", { href: "mailto:" + config.contact })
+        .lastElement.innerHTML = "Contact";
+
+    domBuilderFooter.lastElement.innerHTML += " - ";
+
+    domBuilderFooter
+        .build("a", { href: "https://github.com/" + config.core.owner + "/" + config.core.repository, target: "_blank" })
+        .lastElement.innerHTML = "Source";
+
+    domBuilderFooter.lastElement.innerHTML += " - © " + config.copyright.startyear + "-" + new Date().getFullYear() + " by " + config.copyright.name;
 }
 
 async function setupInfo() {

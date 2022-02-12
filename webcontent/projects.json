@@ -1,4 +1,10 @@
 [{
+        "name": "Legal Notice",
+        "id": "legal",
+        "repo_based": false
+    },
+
+    {
         "name": "Tex Base",
         "desc": "Here can be a short text",
         "owner": "TimGoll",
