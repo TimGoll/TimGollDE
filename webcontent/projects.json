@@ -1,4 +1,5 @@
 [{
+        "_c": "The first project is a special project that is used as a placeholder for the legal notice page.",
         "name": "Legal Notice",
         "id": "legal",
         "repo_based": false,

@@ -8,9 +8,9 @@ function cache_file($project, $config) {
 			. $project["default_branch"] . "/README.md";
 	} else {
 		$readme_path = $config["raw_base"]
-			. $config["owner"] . "/"
-			. $config["repository"] . "/"
-			. $config["default_branch"] . "/webcontent/markdown/"
+			. $config["core"]["owner"] . "/"
+			. $config["core"]["repository"] . "/"
+			. $config["core"]["default_branch"] . "/webcontent/markdown/"
 			. $project["id"] . ".md";
 	}
 
@@ -42,9 +42,9 @@ function cache_file($project, $config) {
 				. $link;
 		} else {
 			$new_link = $config["raw_base"]
-				. $config["owner"] . "/"
-				. $config["repository"] . "/"
-				. $config["default_branch"] . "/webcontent/assets/"
+				. $config["core"]["owner"] . "/"
+				. $config["core"]["repository"] . "/"
+				. $config["core"]["default_branch"] . "/webcontent/assets/"
 				. $link;
 		}
 
@@ -59,15 +59,15 @@ function cache_file($project, $config) {
 			. $project["default_branch"];
 		$html_file = $html_path . "/README.html";
 
-		$html = request_markdown($config["owner"], $config["api_key"], $markdown, "gfm", $project["owner"] . "/" . $project["id"]);
+		$html = request_markdown($config["core"]["owner"], $config["api_key"], $markdown, "gfm", $project["owner"] . "/" . $project["id"]);
 	} else {
 		$html_path = "../cache/"
-			. $config["owner"] . "/"
-			. $config["repository"] . "/"
-			. $config["default_branch"];
+			. $config["core"]["owner"] . "/"
+			. $config["core"]["repository"] . "/"
+			. $config["core"]["default_branch"];
 		$html_file = $html_path . "/" . $project["id"] . ".html";
 
-		$html = request_markdown($config["owner"], $config["api_key"], $markdown, "gfm", $config["owner"] . "/" . $project["id"]);
+		$html = request_markdown($config["core"]["owner"], $config["api_key"], $markdown, "gfm", $config["core"]["owner"] . "/" . $project["id"]);
 	}
 
 	if (!is_dir($html_path)) {

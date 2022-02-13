@@ -11,9 +11,9 @@
     mkdir("../cache/");
 
     $project_path = $config["raw_base"]
-        . $config["owner"] . "/"
-        . $config["repository"] . "/"
-        . $config["default_branch"] . "/webcontent/projects.json";
+        . $config["core"]["owner"] . "/"
+        . $config["core"]["repository"] . "/"
+        . $config["core"]["default_branch"] . "/webcontent/projects.json";
 
     // get a list of all projects that should be displayed on the website
     $project_list = json_decode(file_get_contents($project_path), true);
@@ -28,9 +28,9 @@
 
     // also cache the main bio
     cache_file(array(
-        "owner" => "TimGoll",
-        "id" => "TimGoll",
-        "default_branch" => "main",
+        "owner" => $config["bio"]["owner"],
+        "id" => $config["bio"]["repository"],
+        "default_branch" => $config["bio"]["default_branch"],
         "repo_based" => true
     ), $config);
 ?>
