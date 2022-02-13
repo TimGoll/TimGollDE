@@ -26,7 +26,7 @@
         "name": "ATMega 328pb Breakout",
         "desc": "A simple breakout board to test a 20MHz clocked 328pb",
         "owner": "TimGoll",
-        "id": "pcb_atmega328p",
+        "id": "pcb_atmega328pb",
         "repo_based": true,
         "default_branch": "main"
     },
