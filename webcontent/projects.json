@@ -7,7 +7,7 @@
     },
 
     {
-        "name": "PCB LED Dimmer",
+        "name": "12V LED Dimmer",
         "desc": "Here can be a short text",
         "owner": "TimGoll",
         "id": "pcb_led_dimmer",
@@ -35,6 +35,13 @@
         "desc": "A homemade light table that can be used to trace images",
         "id": "light_table",
         "date": "2015-12-22T00:00:00Z",
+        "repo_based": false
+    },
+    {
+        "name": "RetroPi GameBoy",
+        "desc": "A homemade GamemBoy running RetroPi on a RaspberryPi",
+        "id": "gameboy",
+        "date": "2017-01-18T00:00:00Z",
         "repo_based": false
     }
 ]
