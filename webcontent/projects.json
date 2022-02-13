@@ -7,20 +7,10 @@
     },
 
     {
-        "name": "Tex Base",
-        "desc": "Here can be a short text",
-        "owner": "TimGoll",
-        "id": "tex_base",
-        "date": "",
-        "repo_based": true,
-        "default_branch": "master"
-    },
-    {
         "name": "PCB LED Dimmer",
         "desc": "Here can be a short text",
         "owner": "TimGoll",
         "id": "pcb_led_dimmer",
-        "date": "",
         "repo_based": true,
         "default_branch": "main"
     },
@@ -29,7 +19,6 @@
         "desc": "Here can be a short text",
         "owner": "TimGoll",
         "id": "multiprocessing",
-        "date": "",
         "repo_based": true,
         "default_branch": "master"
     },
@@ -38,15 +27,14 @@
         "desc": "A simple breakout board to test a 20MHz clocked 328pb",
         "owner": "TimGoll",
         "id": "pcb_atmega328p",
-        "date": "",
         "repo_based": true,
         "default_branch": "main"
     },
     {
-        "name": "Project B",
-        "desc": "Also a short expanation of what is going on",
-        "id": "project_b",
-        "date": "",
+        "name": "Light Table",
+        "desc": "A homemade light table that can be used to trace images",
+        "id": "light_table",
+        "date": "2015-12-22T00:00:00Z",
         "repo_based": false
     }
 ]
