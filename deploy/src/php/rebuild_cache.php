@@ -28,10 +28,46 @@
 
     echolog("fetched projects.json file", 1);
 
+    echolog("updating project data with data from GitHub", 1);
+
+    // we iterate over the whole list to add the date and tags to the projects
+    for ($i = 0; $i < count($project_list); $i++) {
+        $project = $project_list[$i];
+
+        if (!$project["repo_based"]) {
+            continue;
+        }
+
+        echolog("repo based project: " . $project["id"], 2);
+
+        // only request data if at least one of the data points is missing
+        if (array_key_exists("date", $project) and array_key_exists("topics", $project)) {
+            continue;
+        }
+
+        $repo_data = json_decode(request_repo_data($config["api_key"], $project["owner"] . "/" . $project["id"]), true);
+
+        // only add date if not set manually
+        if (!array_key_exists("date", $project)) {
+            $project_list[$i]["date"] = $repo_data["created_at"];
+
+            echolog("added creation date", 3);
+        }
+
+        // only add tags if not set manually
+        if (!array_key_exists("topics", $project)) {
+            $project_list[$i]["topics"] = $repo_data["topics"];
+
+            echolog("added tag list", 3);
+        }
+    }
+
+    echolog("finished updating project data with data from GitHub", 1);
+
     // write project list to cache as well
     file_put_contents("../cache/projects.json", json_encode($project_list));
 
-    echolog("stored projects file in cache", 1);
+    echolog("stored updated projects file in cache", 1);
 
     echolog("starting to fetch project contents", 1);
 
