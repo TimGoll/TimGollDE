@@ -1,14 +1,22 @@
+<pre>
+
 <?php
     include_once("config.php");
     include_once("lib/api.php");
     include_once("lib/r_rmdir.php");
+    include_once("lib/echo_log.php");
     include_once("lib/cache_file.php");
+
+    echolog("Started rebuilding the website cache, this may take a while...", 0);
+    echo("\n");
 
     // clear cache
     if (is_dir("../cache")) {
         r_rmdir("../cache");
     }
     mkdir("../cache/");
+
+    echolog("deleted old cache folder", 1);
 
     $project_path = $config["raw_base"]
         . $config["core"]["owner"] . "/"
@@ -18,13 +26,23 @@
     // get a list of all projects that should be displayed on the website
     $project_list = json_decode(file_get_contents($project_path), true);
 
+    echolog("fetched projects.json file", 1);
+
     // write project list to cache as well
     file_put_contents("../cache/projects.json", json_encode($project_list));
+
+    echolog("stored projects file in cache", 1);
+
+    echolog("starting to fetch project contents", 1);
 
     // iterate over all projects, request their markdown files, fix the links and translate to HTML
     foreach ($project_list as $project) {
         cache_file($project, $config);
     }
+
+    echolog("finished fetching all projects", 1);
+
+    echolog("caching bio page", 1);
 
     // also cache the main bio
     cache_file(array(
@@ -33,4 +51,11 @@
         "default_branch" => $config["bio"]["default_branch"],
         "repo_based" => true
     ), $config);
+
+    echolog("finished caching bio page", 1);
+    echo("\n");
+
+    echolog("Finished caching website", 0);
 ?>
+
+</pre>
