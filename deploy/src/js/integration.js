@@ -25,7 +25,27 @@ export async function requestCachedParsedMarkdownFile({ owner = "", repository =
 }
 
 export async function requestCachedProjectData() {
-    return JSON.parse(await requestCachedFile("projects.json"));
+    let projects = JSON.parse(await requestCachedFile("projects.json"));
+
+    // first: cache timestamp
+    for (let i = 0; i < projects.length; i++) {
+        let project = projects[i];
+
+        if (project.date == undefined) {
+            project.date_abs = 0;
+
+            continue;
+        }
+
+        project.date_abs = new Date(project.date).getTime();
+    }
+
+    // second: sort by date
+    projects.sort(function(a, b) {
+        return b.date_abs - a.date_abs;
+    });
+
+    return projects
 }
 
 export async function requestGitHubImageFile({ origin = "", owner = "", repository = "", defaultBranch = "master", file = "" } = {}) {
