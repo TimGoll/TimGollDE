@@ -31,6 +31,119 @@
         "default_branch": "main"
     },
     {
+        "name": "GitHubs based Portfolio",
+        "desc": "This system builds a portfolio website based on your GitHub profile",
+        "owner": "TimGoll",
+        "id": "github-portfolio",
+        "repo_based": true,
+        "default_branch": "master"
+    },
+    {
+        "name": "Bose AE2 Soundlink USB Upgrade",
+        "desc": "Replaces the broken micro USB plug with a new USB Type-C plug",
+        "owner": "TimGoll",
+        "id": "pcb_ae2_soundlink_usb-c",
+        "repo_based": true,
+        "default_branch": "main"
+    },
+    {
+        "name": "A PCB to test Touch Pads",
+        "desc": "A PCB touch pad based on the TTP223",
+        "owner": "TimGoll",
+        "id": "pcb_touch_test",
+        "repo_based": true,
+        "default_branch": "main"
+    },
+    {
+        "name": "Port Expander IC for MCUs",
+        "desc": "A port expander with 16 further ports based on the MCP23S17 IC",
+        "owner": "TimGoll",
+        "id": "pcb_port_expander",
+        "repo_based": true,
+        "default_branch": "main"
+    },
+    {
+        "name": "Automatic Vitamin Pill Dispenser",
+        "desc": "A vitamin pill dispenser for a uniersity project",
+        "owner": "TimGoll",
+        "id": "sem2_dispenser",
+        "repo_based": true,
+        "default_branch": "master"
+    },
+    {
+        "name": "Lightweight Image Popup",
+        "desc": "A lightweight fancy box alternative build in pure JavaScript",
+        "owner": "TimGoll",
+        "id": "simplebox",
+        "repo_based": true,
+        "default_branch": "master"
+    },
+    {
+        "name": "Secret Hitler Addons",
+        "desc": "3D printable addons for the Secret Hitler board game",
+        "owner": "TimGoll",
+        "id": "secrect_hitler_addons",
+        "repo_based": true,
+        "default_branch": "master"
+    },
+    {
+        "name": "Make BlockXY Upgrade",
+        "desc": "An upgrade for the Make BlockXY plotter to support custom electronics and cable drag chains",
+        "owner": "TimGoll",
+        "id": "MakeBlockXYPlotterUpgrade",
+        "repo_based": true,
+        "default_branch": "master"
+    },
+    {
+        "name": "Plastic Straw Marker",
+        "desc": "An attempt to reduce plastic waste on parties by providing custom markers for every guest",
+        "owner": "TimGoll",
+        "id": "straw_marker",
+        "repo_based": true,
+        "default_branch": "master"
+    },
+    {
+        "name": "Geeetech i3 Upgrade",
+        "desc": "Upgraded parts for the budget Geeetech \"Prusa\" i3 3D printer",
+        "owner": "TimGoll",
+        "id": "geeetech_prusa_i3_hardware_upgrade",
+        "repo_based": true,
+        "default_branch": "master"
+    },
+    {
+        "name": "Fishing Rod Repair",
+        "desc": "A 3D printed part for a broken fishing rod of a colleague",
+        "owner": "TimGoll",
+        "id": "plusinno_fishing_rod_reel_holder",
+        "repo_based": true,
+        "default_branch": "master"
+    },
+    {
+        "name": "SimpleCMS",
+        "desc": "A very simple client side CMS system that dynamically loads content on the fly",
+        "owner": "TimGoll",
+        "id": "simpleCMS",
+        "repo_based": true,
+        "default_branch": "master"
+    },
+    {
+        "name": "Facading",
+        "desc": "A (unfinished) Minecraft mod that adds machines and custom blocks",
+        "owner": "TimGoll",
+        "id": "facading",
+        "repo_based": true,
+        "default_branch": "master"
+    },
+    {
+        "name": "KiCAD Libraries",
+        "desc": "My personal custom symbol and footprint library that is extended over time",
+        "owner": "TimGoll",
+        "id": "kicad_libs",
+        "repo_based": true,
+        "default_branch": "master"
+    },
+
+    {
         "name": "Light Table",
         "desc": "A homemade light table that can be used to trace images",
         "id": "light_table",
