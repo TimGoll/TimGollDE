@@ -31,7 +31,7 @@
         "default_branch": "main"
     },
     {
-        "name": "GitHubs based Portfolio",
+        "name": "GitHub based Portfolio",
         "desc": "This system builds a portfolio website based on your GitHub profile",
         "owner": "TimGoll",
         "id": "github-portfolio",
@@ -152,7 +152,7 @@
     },
     {
         "name": "RetroPi GameBoy",
-        "desc": "A homemade GamemBoy running RetroPi on a RaspberryPi",
+        "desc": "A homemade GameBoy running RetroPi on a RaspberryPi",
         "id": "gameboy",
         "date": "2017-01-18T00:00:00Z",
         "repo_based": false
@@ -165,7 +165,7 @@
         "repo_based": false
     },
     {
-        "name": "Electroics Workplace",
+        "name": "Electronics Workplace",
         "desc": "A compact moveable electronics workplace",
         "id": "elec_workplace",
         "date": "2017-10-15T00:00:00Z",
