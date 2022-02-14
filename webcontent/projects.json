@@ -64,7 +64,7 @@
     },
     {
         "name": "Automatic Vitamin Pill Dispenser",
-        "desc": "A vitamin pill dispenser for a uniersity project",
+        "desc": "A vitamin pill dispenser for a university project",
         "owner": "TimGoll",
         "id": "sem2_dispenser",
         "repo_based": true,
@@ -155,6 +155,34 @@
         "desc": "A homemade GamemBoy running RetroPi on a RaspberryPi",
         "id": "gameboy",
         "date": "2017-01-18T00:00:00Z",
+        "repo_based": false
+    },
+    {
+        "name": "TTT2 Mod",
+        "desc": "The spiritual successor to the beloved TTT gamemode",
+        "id": "ttt2",
+        "date": "2018-04-19T00:00:00Z",
+        "repo_based": false
+    },
+    {
+        "name": "Electroics Workplace",
+        "desc": "A compact moveable electronics workplace",
+        "id": "elec_workplace",
+        "date": "2017-10-15T00:00:00Z",
+        "repo_based": false
+    },
+    {
+        "name": "Turnbased Game",
+        "desc": "Some concepts for my turnbased strategy game",
+        "id": "game",
+        "date": "2015-11-15T00:00:00Z",
+        "repo_based": false
+    },
+    {
+        "name": "Custom Text Editor",
+        "desc": "A custom text editor written in JavaScript and PHP",
+        "id": "text_editor",
+        "date": "2015-09-24T00:00:00Z",
         "repo_based": false
     }
 ]
