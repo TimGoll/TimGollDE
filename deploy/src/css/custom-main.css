@@ -36,7 +36,6 @@ body {
     color: var(--color-fg-muted);
     border-color: var(--color-border-default);
     background: none;
-    height: 350px;
     cursor: pointer;
 }
 
@@ -118,6 +117,25 @@ body {
     border: none;
 }
 
+.markdown-body .image-box-height {
+    height: 225px !important;
+}
+
+.markdown-body .topics-area {
+    align-items: flex-end;
+    flex-wrap: wrap;
+}
+
+.markdown-body .topic-box {
+    padding: 2px 12px;
+    float: left;
+    border-radius: 3px;
+    width: fit-content;
+    height: fit-content;
+    margin: 5px 5px 0 0;
+    flex-shrink: 0;
+}
+
 .w-100 {
     width: 100%;
 }
@@ -146,6 +164,10 @@ body {
     margin-top: 0 !important
 }
 
+.mb-0 {
+    margin-bottom: 0 !important
+}
+
 .mt-3 {
     margin-top: 16px !important
 }
@@ -164,6 +186,10 @@ body {
 
 .pl-0 {
     padding-left: 0 !important
+}
+
+.pt-0 {
+    padding-top: 0 !important
 }
 
 .d-flex {
