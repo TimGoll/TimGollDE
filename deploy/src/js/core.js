@@ -75,9 +75,14 @@ async function setupProjects() {
             .build("div", { class: "Box of-hidden d-flex w-100 project-list-item-item" })
             .build("div", { class: "project-list-item-content", project: i });
 
-        let img = domBuilderContent
+        let domBuilderImgArea = domBuilderContent
             .build("div", { class: "image-box-height of-hidden img-project" })
+
+        let domBuilderImg = domBuilderImgArea
             .build("img", { class: "object-fit-cover w-100 h-100", src: "src/img/no_icon.png" });
+
+        domBuilderImgArea
+            .build("div", { class: "date-box", innerHTML: new Date(project.date).toLocaleDateString("de-DE") });
 
         let domBuilderText = domBuilderContent
             .build("div", { class: "d-flex flex-dir-col flex-grow-2 p-3" });
@@ -107,7 +112,7 @@ async function setupProjects() {
 
         domBuilderContent.lastElement.addEventListener("click", openProject);
 
-        requestImage(project.id, img.lastElement);
+        requestImage(project.id, domBuilderImg.lastElement);
     }
 }
 

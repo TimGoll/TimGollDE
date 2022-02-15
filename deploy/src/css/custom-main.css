@@ -59,6 +59,7 @@ body {
 .markdown-body .img-project {
     width: 100%;
     height: 65%;
+    position: relative;
 }
 
 .markdown-body .fullpanel {
@@ -128,12 +129,21 @@ body {
 
 .markdown-body .topic-box {
     padding: 2px 12px;
-    float: left;
-    border-radius: 3px;
+    border-radius: 5px;
     width: fit-content;
     height: fit-content;
     margin: 5px 5px 0 0;
     flex-shrink: 0;
+}
+
+.markdown-body .date-box {
+    position: absolute;
+    padding: 2px 12px;
+    border-radius: 5px;
+    left: 5px;
+    top: 5px;
+    background-color: var(--color-canvas-default-trans);
+    color: var(--color-fg-default-trans);
 }
 
 .w-100 {

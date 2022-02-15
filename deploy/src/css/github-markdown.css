@@ -271,10 +271,12 @@
         --color-action-list-item-danger-active-bg: rgba(229, 83, 75, 0.24);
         --color-action-list-item-danger-hover-text: #f47067;
         --color-fg-default: #adbac7;
+        --color-fg-default-trans: #adbac7aa;
         --color-fg-muted: #768390;
         --color-fg-subtle: #545d68;
         --color-fg-on-emphasis: #cdd9e5;
         --color-canvas-default: #22272e;
+        --color-canvas-default-trans: #22272eaa;
         --color-canvas-overlay: #2d333b;
         --color-canvas-inset: #1c2128;
         --color-canvas-subtle: #2d333b;
@@ -692,11 +694,12 @@
         --color-action-list-item-danger-hover-bg: rgba(255, 235, 233, 0.64);
         --color-action-list-item-danger-active-bg: #FFEBE9;
         --color-action-list-item-danger-hover-text: #cf222e;
-        --color-fg-default: #24292f;
+        --color-fg-default-trans: #24292faa;
         --color-fg-muted: #57606a;
         --color-fg-subtle: #6e7781;
         --color-fg-on-emphasis: #ffffff;
         --color-canvas-default: #ffffff;
+        --color-canvas-default-trans: #ffffffaa;
         --color-canvas-overlay: #ffffff;
         --color-canvas-inset: #f6f8fa;
         --color-canvas-subtle: #f6f8fa;
