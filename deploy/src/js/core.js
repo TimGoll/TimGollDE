@@ -1,4 +1,5 @@
 import * as integration from "./integration.js";
+import * as misc from "./misc.js";
 import DOMBuilder from "./dombuilder.js";
 
 var projects = [];
@@ -75,17 +76,34 @@ async function setupProjects() {
             .build("div", { class: "project-list-item-content", project: i });
 
         let img = domBuilderContent
-            .build("div", { class: "d-flex flex-grow-2 of-hidden img-project" })
+            .build("div", { class: "image-box-height of-hidden img-project" })
             .build("img", { class: "object-fit-cover w-100 h-100", src: "src/img/no_icon.png" });
 
         let domBuilderText = domBuilderContent
-            .build("div", { class: "d-flex flex-dir-col flex-grow-1 p-3" });
+            .build("div", { class: "d-flex flex-dir-col flex-grow-2 p-3" });
 
         domBuilderText
             .build("h3", { class: "mt-0", innerHTML: project.name });
 
         domBuilderText
-            .build("p", { innerHTML: project.desc });
+            .build("p", { class: "mb-0", innerHTML: project.desc });
+
+        let domBuilderTopics = domBuilderContent
+            .build("div", { class: "d-flex flex-grow-1 p-3 pt-0 topics-area" });
+
+        console.log(project);
+
+        for (let i = 0; i < project.topics.length; i++) {
+            let topic = project.topics[i];
+            let color = misc.stringToColor(topic)
+
+            domBuilderTopics
+                .build("div", {
+                    class: "topic-box",
+                    style: "background-color: " + color + "; color: " + misc.getTextColor(color),
+                    innerHTML: topic
+                });
+        }
 
         domBuilderContent.lastElement.addEventListener("click", openProject);
 

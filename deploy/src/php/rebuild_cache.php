@@ -62,6 +62,19 @@
         }
     }
 
+    // sanetize array
+    for ($i = 0; $i < count($project_list); $i++) {
+        $project = $project_list[$i];
+
+        if (!array_key_exists("date", $project)) {
+            $project_list[$i]["date"] = "";
+        }
+
+        if (!array_key_exists("topics", $project)) {
+            $project_list[$i]["topics"] = array();
+        }
+    }
+
     echolog("finished updating project data with data from GitHub", 1);
 
     // write project list to cache as well
