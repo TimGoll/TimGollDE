@@ -47,7 +47,7 @@
         "default_branch": "main"
     },
     {
-        "name": "A PCB to test Touch Pads",
+        "name": "Test Touch Pad PCB",
         "desc": "A PCB touch pad based on the TTP223",
         "owner": "TimGoll",
         "id": "pcb_touch_test",
@@ -161,7 +161,7 @@
         "name": "TTT2 Mod",
         "desc": "The spiritual successor to the beloved TTT gamemode",
         "id": "ttt2",
-        "date": "2018-04-19T00:00:00Z",
+        "date": "2019-02-24T00:00:00Z",
         "repo_based": false
     },
     {
