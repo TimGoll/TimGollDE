@@ -223,7 +223,7 @@
         "id": "smartphone_fixing",
         "date": "2021-12-27T00:00:00Z",
         "topics": [
-            "electonics",
+            "electronics",
             "fix"
         ],
         "repo_based": false
@@ -245,7 +245,7 @@
         "date": "2014-01-01T00:00:00Z",
         "topics": [
             "build",
-            "electonics",
+            "electronics",
             "woodworking"
         ],
         "repo_based": false
