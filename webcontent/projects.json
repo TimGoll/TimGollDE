@@ -8,7 +8,7 @@
 
     {
         "name": "12V LED Dimmer",
-        "desc": "Here can be a short text",
+        "desc": "A NE555 based light dimming circuit for 12V led strips",
         "owner": "TimGoll",
         "id": "pcb_led_dimmer",
         "repo_based": true,
@@ -16,7 +16,7 @@
     },
     {
         "name": "Mutiprocessing",
-        "desc": "Here can be a short text",
+        "desc": "A warpper for the multiprocessing library to build threaded classes easier",
         "owner": "TimGoll",
         "id": "multiprocessing",
         "repo_based": true,
@@ -148,6 +148,11 @@
         "desc": "A homemade light table that can be used to trace images",
         "id": "light_table",
         "date": "2015-12-22T00:00:00Z",
+        "topics": [
+            "build",
+            "electronics",
+            "woodworking"
+        ],
         "repo_based": false
     },
     {
@@ -155,6 +160,12 @@
         "desc": "A homemade GameBoy running RetroPi on a RaspberryPi",
         "id": "gameboy",
         "date": "2017-01-18T00:00:00Z",
+        "topics": [
+            "3d-printing",
+            "build",
+            "electronics",
+            "raspberry-pi"
+        ],
         "repo_based": false
     },
     {
@@ -162,6 +173,12 @@
         "desc": "The spiritual successor to the beloved TTT gamemode",
         "id": "ttt2",
         "date": "2019-02-24T00:00:00Z",
+        "topics": [
+            "design",
+            "gamedev",
+            "lua",
+            "modding"
+        ],
         "repo_based": false
     },
     {
@@ -169,6 +186,10 @@
         "desc": "A compact moveable electronics workplace",
         "id": "elec_workplace",
         "date": "2017-10-15T00:00:00Z",
+        "topics": [
+            "build",
+            "woodworking"
+        ],
         "repo_based": false
     },
     {
@@ -176,6 +197,11 @@
         "desc": "Some concepts for my turnbased strategy game",
         "id": "game",
         "date": "2015-11-15T00:00:00Z",
+        "topics": [
+            "design",
+            "gamedev",
+            "javascript"
+        ],
         "repo_based": false
     },
     {
@@ -183,6 +209,45 @@
         "desc": "A custom text editor written in JavaScript and PHP",
         "id": "text_editor",
         "date": "2015-09-24T00:00:00Z",
+        "topics": [
+            "javascript",
+            "library",
+            "php",
+            "webdev"
+        ],
+        "repo_based": false
+    },
+    {
+        "name": "Smartphone Fixing",
+        "desc": "Fixing broken devices, like the display of this Samsung A50",
+        "id": "smartphone_fixing",
+        "date": "2015-09-24T00:00:00Z",
+        "topics": [
+            "electonics",
+            "fix"
+        ],
+        "repo_based": false
+    },
+    {
+        "name": "Product Drawing",
+        "desc": "Digitally Drawing an iPad (1st gen) from scratch",
+        "id": "dig_raw",
+        "date": "2011-01-27T00:00:00Z",
+        "topics": [
+            "design"
+        ],
+        "repo_based": false
+    },
+    {
+        "name": "Open Shelf",
+        "desc": "A custom open shelf with RGB light in it",
+        "id": "shelf",
+        "date": "2014-01-01T00:00:00Z",
+        "topics": [
+            "build",
+            "electonics",
+            "woodworking"
+        ],
         "repo_based": false
     }
 ]
