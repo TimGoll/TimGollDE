@@ -91,7 +91,7 @@ async function setupProjects() {
             .build("h3", { class: "mt-0", innerHTML: project.name });
 
         domBuilderText
-            .build("p", { class: "mb-0", innerHTML: project.desc });
+            .build("p", { class: "mb-0", innerHTML: project.description });
 
         let domBuilderTopics = domBuilderContent
             .build("div", { class: "d-flex flex-grow-1 p-3 pt-0 topics-area" });

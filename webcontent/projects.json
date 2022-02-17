@@ -8,7 +8,7 @@
 
     {
         "name": "12V LED Dimmer",
-        "desc": "A NE555 based light dimming circuit for 12V led strips",
+        "description": "A NE555 based light dimming circuit for 12V led strips",
         "owner": "TimGoll",
         "id": "pcb_led_dimmer",
         "repo_based": true,
@@ -16,136 +16,120 @@
     },
     {
         "name": "Mutiprocessing",
-        "desc": "A warpper for the multiprocessing library to build threaded classes easier",
+        "description": "A warpper for the multiprocessing library to build threaded classes easier",
         "owner": "TimGoll",
         "id": "multiprocessing",
-        "repo_based": true,
-        "default_branch": "master"
+        "repo_based": true
     },
     {
         "name": "ATMega 328pb Breakout",
-        "desc": "A simple breakout board to test a 20MHz clocked 328pb",
+        "description": "A simple breakout board to test a 20MHz clocked 328pb",
         "owner": "TimGoll",
         "id": "pcb_atmega328pb",
-        "repo_based": true,
-        "default_branch": "main"
+        "repo_based": true
     },
     {
         "name": "GitHub based Portfolio",
-        "desc": "This system builds a portfolio website based on your GitHub profile",
+        "description": "This system builds a portfolio website based on your GitHub profile",
         "owner": "TimGoll",
         "id": "github-portfolio",
-        "repo_based": true,
-        "default_branch": "master"
+        "repo_based": true
     },
     {
         "name": "Bose AE2 Soundlink USB Upgrade",
-        "desc": "Replaces the broken micro USB plug with a new USB Type-C plug",
+        "description": "Replaces the broken micro USB plug with a new USB Type-C plug",
         "owner": "TimGoll",
         "id": "pcb_ae2_soundlink_usb-c",
-        "repo_based": true,
-        "default_branch": "main"
+        "repo_based": true
     },
     {
         "name": "Test Touch Pad PCB",
-        "desc": "A PCB touch pad based on the TTP223",
+        "description": "A PCB touch pad based on the TTP223",
         "owner": "TimGoll",
         "id": "pcb_touch_test",
-        "repo_based": true,
-        "default_branch": "main"
+        "repo_based": true
     },
     {
         "name": "Port Expander IC for MCUs",
-        "desc": "A port expander with 16 further ports based on the MCP23S17 IC",
+        "description": "A port expander with 16 further ports based on the MCP23S17 IC",
         "owner": "TimGoll",
         "id": "pcb_port_expander",
-        "repo_based": true,
-        "default_branch": "main"
+        "repo_based": true
     },
     {
         "name": "Automatic Vitamin Pill Dispenser",
-        "desc": "A vitamin pill dispenser for a university project",
+        "description": "A vitamin pill dispenser for a university project",
         "owner": "TimGoll",
         "id": "sem2_dispenser",
-        "repo_based": true,
-        "default_branch": "master"
+        "repo_based": true
     },
     {
         "name": "Lightweight Image Popup",
-        "desc": "A lightweight fancy box alternative build in pure JavaScript",
+        "description": "A lightweight fancy box alternative build in pure JavaScript",
         "owner": "TimGoll",
         "id": "simplebox",
-        "repo_based": true,
-        "default_branch": "master"
+        "repo_based": true
     },
     {
         "name": "Secret Hitler Addons",
-        "desc": "3D printable addons for the Secret Hitler board game",
+        "description": "3D printable addons for the Secret Hitler board game",
         "owner": "TimGoll",
         "id": "secrect_hitler_addons",
-        "repo_based": true,
-        "default_branch": "master"
+        "repo_based": true
     },
     {
         "name": "Make BlockXY Upgrade",
-        "desc": "An upgrade for the Make BlockXY plotter to support custom electronics and cable drag chains",
+        "description": "An upgrade for the Make BlockXY plotter to support custom electronics and cable drag chains",
         "owner": "TimGoll",
         "id": "MakeBlockXYPlotterUpgrade",
-        "repo_based": true,
-        "default_branch": "master"
+        "repo_based": true
     },
     {
         "name": "Plastic Straw Marker",
-        "desc": "An attempt to reduce plastic waste on parties by providing custom markers for every guest",
+        "description": "An attempt to reduce plastic waste on parties by providing custom markers for every guest",
         "owner": "TimGoll",
         "id": "straw_marker",
-        "repo_based": true,
-        "default_branch": "master"
+        "repo_based": true
     },
     {
         "name": "Geeetech i3 Upgrade",
-        "desc": "Upgraded parts for the budget Geeetech \"Prusa\" i3 3D printer",
+        "description": "Upgraded parts for the budget Geeetech \"Prusa\" i3 3D printer",
         "owner": "TimGoll",
         "id": "geeetech_prusa_i3_hardware_upgrade",
-        "repo_based": true,
-        "default_branch": "master"
+        "repo_based": true
     },
     {
         "name": "Fishing Rod Repair",
-        "desc": "A 3D printed part for a broken fishing rod of a colleague",
+        "description": "A 3D printed part for a broken fishing rod of a colleague",
         "owner": "TimGoll",
         "id": "plusinno_fishing_rod_reel_holder",
-        "repo_based": true,
-        "default_branch": "master"
+        "repo_based": true
     },
     {
         "name": "SimpleCMS",
-        "desc": "A very simple client side CMS system that dynamically loads content on the fly",
+        "description": "A very simple client side CMS system that dynamically loads content on the fly",
         "owner": "TimGoll",
         "id": "simpleCMS",
-        "repo_based": true,
-        "default_branch": "master"
+        "repo_based": true
     },
     {
         "name": "Facading",
-        "desc": "A (unfinished) Minecraft mod that adds machines and custom blocks",
+        "description": "A (unfinished) Minecraft mod that adds machines and custom blocks",
         "owner": "TimGoll",
         "id": "facading",
-        "repo_based": true,
-        "default_branch": "master"
+        "repo_based": true
     },
     {
         "name": "KiCAD Libraries",
-        "desc": "My personal custom symbol and footprint library that is extended over time",
+        "description": "My personal custom symbol and footprint library that is extended over time",
         "owner": "TimGoll",
         "id": "kicad_libs",
-        "repo_based": true,
-        "default_branch": "master"
+        "repo_based": true
     },
 
     {
         "name": "Light Table",
-        "desc": "A homemade light table that can be used to trace images",
+        "description": "A homemade light table that can be used to trace images",
         "id": "light_table",
         "date": "2015-12-22T00:00:00Z",
         "topics": [
@@ -157,7 +141,7 @@
     },
     {
         "name": "RetroPi GameBoy",
-        "desc": "A homemade GameBoy running RetroPi on a RaspberryPi",
+        "description": "A homemade GameBoy running RetroPi on a RaspberryPi",
         "id": "gameboy",
         "date": "2017-01-18T00:00:00Z",
         "topics": [
@@ -170,7 +154,7 @@
     },
     {
         "name": "TTT2 Mod",
-        "desc": "The spiritual successor to the beloved TTT gamemode",
+        "description": "The spiritual successor to the beloved TTT gamemode",
         "id": "ttt2",
         "date": "2019-02-24T00:00:00Z",
         "topics": [
@@ -179,11 +163,12 @@
             "lua",
             "modding"
         ],
+        "source": "TTT-2/TTT2",
         "repo_based": false
     },
     {
         "name": "Electronics Workplace",
-        "desc": "A compact moveable electronics workplace",
+        "description": "A compact moveable electronics workplace",
         "id": "elec_workplace",
         "date": "2017-10-15T00:00:00Z",
         "topics": [
@@ -194,7 +179,7 @@
     },
     {
         "name": "Turnbased Game",
-        "desc": "Some concepts for my turnbased strategy game",
+        "description": "Some concepts for my turnbased strategy game",
         "id": "game",
         "date": "2015-11-15T00:00:00Z",
         "topics": [
@@ -206,7 +191,7 @@
     },
     {
         "name": "Custom Text Editor",
-        "desc": "A custom text editor written in JavaScript and PHP",
+        "description": "A custom text editor written in JavaScript and PHP",
         "id": "text_editor",
         "date": "2015-09-24T00:00:00Z",
         "topics": [
@@ -218,8 +203,8 @@
         "repo_based": false
     },
     {
-        "name": "Smartphone Fixing",
-        "desc": "Fixing broken devices, like the display of this Samsung A50",
+        "name": "Smartphone Repair",
+        "description": "Fixing broken devices, like the display of this Samsung A50",
         "id": "smartphone_fixing",
         "date": "2021-12-27T00:00:00Z",
         "topics": [
@@ -230,7 +215,7 @@
     },
     {
         "name": "Product Drawing",
-        "desc": "Digitally Drawing an iPad (1st gen) from scratch",
+        "description": "Digitally Drawing an iPad (1st gen) from scratch",
         "id": "dig_raw",
         "date": "2011-01-27T00:00:00Z",
         "topics": [
@@ -240,7 +225,7 @@
     },
     {
         "name": "Open Shelf",
-        "desc": "A custom open shelf with RGB light in it",
+        "description": "A custom open shelf with RGB light in it",
         "id": "shelf",
         "date": "2014-01-01T00:00:00Z",
         "topics": [
