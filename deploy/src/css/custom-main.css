@@ -146,6 +146,14 @@ body {
     color: var(--color-fg-default-trans);
 }
 
+.markdown-body .project-info-box {
+    width: 100%;
+    background-color: var(--color-canvas-subtle);
+    padding: 6px 12px;
+    border-radius: 5px;
+    color: var(--color-fg-muted);
+}
+
 .w-100 {
     width: 100%;
 }

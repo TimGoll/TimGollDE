@@ -79,7 +79,7 @@ function cache_file($project, $config) {
             . $project["default_branch"];
         $html_file = $html_path . "/README.html";
 
-        $html = request_markdown($config["api_key"], $markdown, "gfm", $project["owner"] . "/" . $project["id"]);
+        $html = request_markdown($config["api_key"], $markdown, "gfm", $project["owner"] . "/" . $project["id"])["result"];
     } else {
         $html_path = "../cache/"
             . $config["core"]["owner"] . "/"
@@ -87,7 +87,7 @@ function cache_file($project, $config) {
             . $config["core"]["default_branch"];
         $html_file = $html_path . "/" . $project["id"] . ".html";
 
-        $html = request_markdown($config["api_key"], $markdown, "gfm", $config["core"]["owner"] . "/" . $project["id"]);
+        $html = request_markdown($config["api_key"], $markdown, "gfm", $config["core"]["owner"] . "/" . $project["id"])["result"];
     }
 
     echolog("received translated markdown file from server", 2);

@@ -96,8 +96,6 @@ async function setupProjects() {
         let domBuilderTopics = domBuilderContent
             .build("div", { class: "d-flex flex-grow-1 p-3 pt-0 topics-area" });
 
-        console.log(project);
-
         for (let i = 0; i < project.topics.length; i++) {
             let topic = project.topics[i];
             let color = misc.stringToColor(topic)
@@ -173,6 +171,41 @@ async function openProject(_, project_id, preventStatePush) {
         });
     }
 
+    // fill info box
+    let projectTop = document.getElementById("project-top")
+
+    projectTop.innerHTML = "Project started at <b>" + new Date(project.date).toLocaleDateString("de-DE") + "</b>";
+
+    console.log(project);
+
+    if (project.repo_based == true) {
+        projectTop.innerHTML += " | <a href=\"//github.com/" + project.owner + "/" + project.id + "\" target=\"_blank\">See on GitHub</a>";
+    } else if (project.source !== "") {
+        projectTop.innerHTML += " | <a href=\"//github.com/" + project.source + "\" target=\"_blank\">See on GitHub</a>";
+    }
+
+    if (project.repo_based == true || project.source !== "") {
+        projectTop.innerHTML += " (" + project.commit_count + " commits)";
+    }
+
+    if (project.homepage !== "") {
+        projectTop.innerHTML += " | <a href=\"" + project.homepage + "\" target=\"_blank\">See homepage</a>";
+    }
+
+    // fill topics box
+    let projectFooter = document.getElementById("project-footer")
+
+    projectFooter.innerHTML = "<b>Topics: </b>";
+
+    for (let i = 0; i < project.topics.length; i++) {
+        if (i != 0) {
+            projectFooter.innerHTML += ", ";
+        }
+
+        projectFooter.innerHTML += project.topics[i];
+    }
+
+    // update browser history
     if (!preventStatePush) {
         window.history.pushState({}, "", project.id);
     }
