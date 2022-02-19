@@ -11,8 +11,7 @@
         "description": "A NE555 based light dimming circuit for 12V led strips",
         "owner": "TimGoll",
         "id": "pcb_led_dimmer",
-        "repo_based": true,
-        "default_branch": "main"
+        "repo_based": true
     },
     {
         "name": "Mutiprocessing",
