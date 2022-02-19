@@ -33,19 +33,34 @@
     // we iterate over the whole list to add the date and tags to the projects
     for ($i = 0; $i < count($project_list); $i++) {
         $project = $project_list[$i];
+        $repo_name = "";
 
-        if (!$project["repo_based"]) {
+        if (!$project["repo_based"] and !array_key_exists("source", $project)) {
             continue;
+        }
+
+        if ($project["repo_based"]) {
+            $repo_name = $project["owner"] . "/" . $project["id"];
+        } else {
+            $repo_name = $project["source"];
         }
 
         echolog("repo based project: " . $project["id"], 2);
 
+        // cache amount of commits
+        $project_list[$i]["commit_count"] = request_repo_commit_amount($config["api_key"], $repo_name);
+
         // only request data if at least one of the data points is missing
-        if (array_key_exists("date", $project) and array_key_exists("topics", $project)) {
+        if (array_key_exists("date", $project)
+            and array_key_exists("topics", $project)
+            and array_key_exists("default_branch", $project)
+            and array_key_exists("homepage", $project)
+            and array_key_exists("description", $project)
+        ) {
             continue;
         }
 
-        $repo_data = json_decode(request_repo_data($config["api_key"], $project["owner"] . "/" . $project["id"]), true);
+        $repo_data = json_decode(request_repo_data($config["api_key"], $repo_name)["result"], true);
 
         // only add date if not set manually
         if (!array_key_exists("date", $project)) {
@@ -54,11 +69,32 @@
             echolog("added creation date", 3);
         }
 
-        // only add tags if not set manually
+        // only add topics if not set manually
         if (!array_key_exists("topics", $project)) {
             $project_list[$i]["topics"] = $repo_data["topics"];
 
             echolog("added tag list", 3);
+        }
+
+        // only add default branch if not set manually
+        if (!array_key_exists("default_branch", $project)) {
+            $project_list[$i]["default_branch"] = $repo_data["default_branch"];
+
+            echolog("added default branch", 3);
+        }
+
+        // only add homepage if not set manually
+        if (!array_key_exists("homepage", $project)) {
+            $project_list[$i]["homepage"] = $repo_data["homepage"];
+
+            echolog("added homepage", 3);
+        }
+
+        // only add description if not set manually
+        if (!array_key_exists("description", $project)) {
+            $project_list[$i]["description"] = $repo_data["description"];
+
+            echolog("added description", 3);
         }
     }
 
@@ -66,12 +102,32 @@
     for ($i = 0; $i < count($project_list); $i++) {
         $project = $project_list[$i];
 
+        if (!array_key_exists("commit_count", $project)) {
+            $project_list[$i]["commit_count"] = "0";
+        }
+
         if (!array_key_exists("date", $project)) {
             $project_list[$i]["date"] = "";
         }
 
         if (!array_key_exists("topics", $project)) {
             $project_list[$i]["topics"] = array();
+        }
+
+        if (!array_key_exists("default_branch", $project)) {
+            $project_list[$i]["default_branch"] = "main";
+        }
+
+        if (!array_key_exists("homepage", $project)) {
+            $project_list[$i]["homepage"] = "";
+        }
+
+        if (!array_key_exists("description", $project)) {
+            $project_list[$i]["description"] = "";
+        }
+
+        if (!array_key_exists("source", $project)) {
+            $project_list[$i]["source"] = "";
         }
     }
 
