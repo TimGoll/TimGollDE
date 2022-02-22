@@ -45,9 +45,9 @@ One of the things that became clear during the early stages of the project is th
 The best thing is though, that we created an [easy to use interface](https://github.com/TTT-2/ttt2mg/blob/master/lua/terrortown/menus/gamemode/server_addons/ttt2mg.lua) such that addons can effortlessly add their own settings to the menu.
 
 ![settings](../assets/ttt2/settings.png)
-_(All settings are accessibe via UI, no external tools are needed)_
+_(All settings are accessible via UI, no external tools are needed)_
 
-### Customizable and Extensable
+### Customizable and Extensible
 
 There are many more things that we did. But they would make this article a whole book. The most interesting things can be found on our [steam page](https://steamcommunity.com/sharedfiles/filedetails/?id=1357204556), all details are in our [changelog](https://github.com/TTT-2/TTT2/blob/master/CHANGELOG.md).
 
