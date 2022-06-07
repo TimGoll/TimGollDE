@@ -7,6 +7,20 @@
     },
 
     {
+        "name": "MCP4725 External DAC",
+        "description": "A C-based library for the MCP4725 external DAC on stm32 MCUs",
+        "owner": "TimGoll",
+        "id": "MCP4725",
+        "repo_based": true
+    },
+    {
+        "name": "Straw Marker v2",
+        "description": "An overhauled straw marker version that clips to reusable staws",
+        "owner": "TimGoll",
+        "id": "straw_marker_v2",
+        "repo_based": true
+    },
+    {
         "name": "SSD1306 Display Driver",
         "description": "A C-based library for SSD1306 based OLED displays on stm32 MCUs",
         "owner": "TimGoll",
