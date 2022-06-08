@@ -236,7 +236,7 @@
     {
         "name": "Product Drawing",
         "description": "Digitally Drawing an iPad (1st gen) from scratch",
-        "id": "dig_raw",
+        "id": "dig_draw",
         "date": "2011-01-27T00:00:00Z",
         "topics": [
             "design"
