@@ -28,6 +28,13 @@
         "repo_based": true
     },
     {
+        "name": "Modular Boxes",
+        "description": "Moduar boxes for drawers on a 25mm base",
+        "owner": "TimGoll",
+        "id": "printable_boxes",
+        "repo_based": true
+    },
+    {
         "name": "12V LED Dimmer",
         "description": "A NE555 based light dimming circuit for 12V led strips",
         "owner": "TimGoll",
