@@ -5,6 +5,19 @@ enum Type {
     case GET;
 }
 
+function request_get_file_contents($URL) {
+    $c = curl_init();
+    curl_setopt($c, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt($c, CURLOPT_URL, $URL);
+    $contents = curl_exec($c);
+    curl_close($c);
+
+    if ($contents)
+        return $contents;
+    else
+        return FALSE;
+}
+
 function request_api_call($url, $token, $type, $curl_data = array()) {
     if ($type == CURLOPT_HTTPGET) {
         $url .= "?" . http_build_query($curl_data);

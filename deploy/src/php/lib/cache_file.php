@@ -20,7 +20,7 @@ function cache_file($project, $config) {
             . $project["id"] . ".md";
     }
 
-    $markdown = file_get_contents($readme_path);
+    $markdown = request_get_file_contents($readme_path);
 
     echolog("fetched file from server, starting link fixing", 2);
 
