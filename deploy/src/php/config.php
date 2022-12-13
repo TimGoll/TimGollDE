@@ -1,7 +1,7 @@
 <?php
     $config = [
         "raw_base" => "https://raw.githubusercontent.com/",
-		"file_base" => "https://github.com/",
+        "file_base" => "https://github.com/",
         "core" => [
             "owner" => "TimGoll",
             "repository" => "TimGollDE",
