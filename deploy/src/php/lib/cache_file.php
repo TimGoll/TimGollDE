@@ -24,43 +24,104 @@ function cache_file($project, $config) {
 
     echolog("fetched file from server, starting link fixing", 2);
 
-    preg_match_all("/\[(.*?)\]\((.*?)\)/", $markdown, $found_links, PREG_OFFSET_CAPTURE);
+    // find all codeboxes to make sure links are not fixed in them
+    preg_match_all("/```[^```]*```|`[^`]*`/", $markdown, $found_codeboxes_raw, PREG_OFFSET_CAPTURE);
 
-    echolog("found " . count($found_links[2]) . " links in document, some may need fixing", 2);
+    print_r($found_codeboxes_raw);
+
+    // sanetize results
+    $found_codeboxes = [];
+
+    foreach ($found_codeboxes_raw[0] as $key => $value) {
+        array_push($found_codeboxes, [
+            "start" => $value[1],
+            "end" => $value[1] + strlen($value[0])
+        ]);
+    }
+
+    // find all link types that may need fixing
+    preg_match_all("/(?<!\!)\[(?:.*?)\]\((?<url>.*?)\)|\[(?:.*?)\]\((?<iurl>.*?)\)|src\s*=\s*\"(?<src>[^\"]+)\"|href\s*=\s*\"(?<href>[^\"]+)\"/", $markdown, $found_links, PREG_OFFSET_CAPTURE);
+    $found_links = array_filter($found_links, "is_string", ARRAY_FILTER_USE_KEY); // discard numeric indeces
+
+    echolog("found " . count($found_links["url"]) . " links in document, some may need fixing", 2);
 
     // iterate backwards over text so that the link fixed do not afect the other links
-    for ($i = count($found_links[2]) - 1; $i >= 0; $i--) {
-        $link = strtolower($found_links[2][$i][0]);
-        $start = $found_links[2][$i][1];
+    for ($i = count($found_links["url"]) - 1; $i >= 0; $i--) {
+        // first determine the link type (markdown url, img src, a href)
+        if ($found_links["url"][$i][1] != -1) {
+            $type = "url";
+            $is_image = false;
+        } elseif ($found_links["iurl"][$i][1] != -1) {
+            $type = "iurl";
+            $is_image = true;
+        } elseif ($found_links["src"][$i][1] != -1) {
+            $type = "src";
+            $is_image = true;
+        } else {
+            $type = "href";
+            $is_image = false;
+        }
+
+        $link = $found_links[$type][$i][0];
+        $link_lower = strtolower($link);
+        $start = $found_links[$type][$i][1];
         $length = strlen($link);
 
         echolog($i . ". " . $link, 3);
 
+        // check if link is within a codebox
+        $is_in_codebox = false;
+        
+        foreach ($found_codeboxes as $key => $value) {
+            if ($start >= $value["start"] && $start <= $value["end"]) {
+                $is_in_codebox = true;
+
+                break;
+            }
+        }
+
+        if ($is_in_codebox) {
+            echolog("link is inside a codebox and therefore doesn't need fixing, continuing", 4);
+
+            continue;
+        }
+
         // ignore links that point to external sources
-        if (str_starts_with($link, "https://") or str_starts_with($link, "http://") or str_starts_with($link, "//")) {
+        if (str_starts_with($link_lower, "https://") or str_starts_with($link_lower, "http://") or str_starts_with($link_lower, "//")) {
             echolog("link is external link that doesn't need fixing, continuing", 4);
 
             continue;
         }
 
         // ignore links that are email links
-        if (str_starts_with($link, "mailto:")) {
+        if (str_starts_with($link_lower, "mailto:")) {
             echolog("link is e-mail adress that doesn't need fixing, continuing", 4);
 
             continue;
         }
 
+        // build base
+        // we want to use the raw file for images, the link to the repo for normal links
+        if ($is_image) {
+            $base = $config["raw_base"];
+        } else {
+            $base = $config["file_base"];
+        }
+
         if ($project["repo_based"]) {
-            $new_link = $config["raw_base"]
+            $new_link = $base
                 . $project["owner"] . "/"
                 . $project["id"] . "/"
+                . ($is_image ? "" : "blob/" )
                 . $project["default_branch"] . "/"
                 . $link;
         } else {
-            $new_link = $config["raw_base"]
+            $new_link = $base
                 . $config["core"]["owner"] . "/"
                 . $config["core"]["repository"] . "/"
-                . $config["core"]["default_branch"] . "/webcontent/assets/"
+                . $config["core"]["default_branch"]
+                . ($is_image ? "" : "blob/")
+                . "/webcontent/assets/"
                 . $link;
         }
 
