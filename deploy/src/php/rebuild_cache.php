@@ -24,7 +24,7 @@
         . $config["core"]["default_branch"] . "/webcontent/projects.json";
 
     // get a list of all projects that should be displayed on the website
-    $project_list = json_decode(file_get_contents($project_path), true);
+    $project_list = json_decode(request_get_file_contents($project_path), true);
 
     echolog("fetched projects.json file", 1);
 
