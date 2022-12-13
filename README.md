@@ -21,6 +21,7 @@ Navgiate to `deploy/src/php` and locate the file `config.php`. It should look li
 <?php
     $config = [
         "raw_base" => "https://raw.githubusercontent.com/",
+        "file_base" => "https://github.com/",
         "core" => [
             "owner" => "TimGoll",
             "repository" => "github-portfolio",
@@ -103,16 +104,13 @@ The classic project is a simple link to a repository. Inside of this repository 
 ```json
 {
     "name": "ATMega 328pb Breakout",
-    "desc": "A simple breakout board to test a 20MHz clocked 328pb",
-    "owner": "TimGoll",
+    "description": "A simple breakout board to test a 20MHz clocked 328pb",
     "id": "pcb_atmega328p",
-    "default_branch": "main",
-    "repo_based": true,
-    "date": "xxx"
+    "repo_based": true
 }
 ```
 
-The `name` and `desc` are used on the project box in the project view. Both should be short and fitting. The `owner`, `id` and `default_branch` point to the repository where this file is located. `repo_based` sets it to the repository based project type.
+The `name` and `description` are used on the project box in the project view. Both should be short and fitting. The `id` points to the repository where this file is located. `repo_based` sets it to the repository based project type.
 
 #### Extra markdown files
 
@@ -123,12 +121,17 @@ For projects that should be featured on the website but that lack their own repo
     "name": "Project B",
     "desc": "Also a short expanation of what is going on",
     "id": "project_b",
-    "repo_based": false,
-    "date": ""
+    "date": "2015-12-22T00:00:00Z",
+    "topics": [
+        "build",
+        "electronics",
+        "woodworking"
+    ],
+    "repo_based": false
 }
 ```
 
-Overall this structure is fairly similar to the structure of the repository based project, but it lacks the info about the repository.
+Overall this structure is fairly similar to the structure of the repository based project, but it has all the basic project information that is automatically fetched for GitHub based projects.
 
 #### Static Pages
 
@@ -143,13 +146,13 @@ Static pages aren't really projects at all and are used for pages such as the la
 }
 ```
 
-The important flag here is `hidden`. If a project is hidden, it won't be showed in the prokject list.
+The important flag here is `hidden`. If a project is hidden, it won't be showed in the project list.
 
 Images for the article should be put inside of the `assets/` folder which is next to the `mardown/` folder.
 
 ### Preview images
 
-Preview images should be an eye catcher when scrolling through the project list. Put them inside of `webcontent/assets/` and name them the same as the project id. They should be a `png`.
+Preview images should be an eye catcher when scrolling through the project list. Put them inside of `webcontent/assets/` and name them the same as the project id. They should be a `*.png`.
 
 ## Automatic caching
 

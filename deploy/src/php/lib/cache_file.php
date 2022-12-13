@@ -27,8 +27,6 @@ function cache_file($project, $config) {
     // find all codeboxes to make sure links are not fixed in them
     preg_match_all("/```[^```]*```|`[^`]*`/", $markdown, $found_codeboxes_raw, PREG_OFFSET_CAPTURE);
 
-    print_r($found_codeboxes_raw);
-
     // sanetize results
     $found_codeboxes = [];
 
