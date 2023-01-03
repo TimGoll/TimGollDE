@@ -92,7 +92,7 @@
     },
     {
         "name": "Lightweight Image Popup",
-        "description": "A lightweight fancy box alternative build in pure JavaScript",
+        "description": "A lightweight fancy box alternative built in pure JavaScript",
         "owner": "TimGoll",
         "id": "simplebox",
         "repo_based": true
@@ -151,6 +151,13 @@
         "description": "My personal custom symbol and footprint library that is extended over time",
         "owner": "TimGoll",
         "id": "kicad_libs",
+        "repo_based": true
+    },
+    {
+        "name": "Prototyping Mount",
+        "description": "Small 3d-printable parts to mount parts of electric prototypes to a wooden board",
+        "owner": "TimGoll",
+        "id": "prototyping_mount",
         "repo_based": true
     },
 
