@@ -160,6 +160,13 @@
         "id": "prototyping_mount",
         "repo_based": true
     },
+    {
+        "name": "Frame Hanger",
+        "description": "Small 3d-printable hangers to mount frames to a wall",
+        "owner": "TimGoll",
+        "id": "frame_hangers",
+        "repo_based": true
+    },
 
     {
         "name": "Light Table",
