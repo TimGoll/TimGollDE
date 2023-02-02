@@ -164,7 +164,7 @@
         "name": "Frame Hanger",
         "description": "Small 3d-printable hangers to mount frames to a wall",
         "owner": "TimGoll",
-        "id": "frame_hangers",
+        "id": "frame_hanger",
         "repo_based": true
     },
 
