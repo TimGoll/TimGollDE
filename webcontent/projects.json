@@ -7,6 +7,13 @@
     },
 
     {
+        "name": "Buck Converter Test",
+        "description": "Four different buck circuits on a single PCB benchmarked",
+        "owner": "TimGoll",
+        "id": "pcb_buck_test",
+        "repo_based": true
+    },
+    {
         "name": "MCP4725 External DAC",
         "description": "A C-based library for the MCP4725 external DAC on stm32 MCUs",
         "owner": "TimGoll",
