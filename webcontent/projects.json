@@ -7,6 +7,20 @@
     },
 
     {
+        "name": "KiCad Coil Generator",
+        "description": "A KiCad plugin that generates coils",
+        "owner": "DIaLOGIKa-GmbH",
+        "id": "kicad-coil-generator",
+        "repo_based": true
+    },
+    {
+        "name": "Constant Current Driver",
+        "description": "Tests and research about different constant current LED drivers",
+        "owner": "DIaLOGIKa-GmbH",
+        "id": "pcb_constant-current-driver",
+        "repo_based": true
+    },
+    {
         "name": "Buck Converter Test",
         "description": "Four different buck circuits on a single PCB benchmarked",
         "owner": "TimGoll",
