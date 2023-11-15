@@ -7,10 +7,10 @@
     },
 
     {
-        "name": "KiCad Coil Generator",
+        "name": "KiCad Coil Creator",
         "description": "A KiCad plugin that generates coils",
         "owner": "DIaLOGIKa-GmbH",
-        "id": "kicad-coil-generator",
+        "id": "kicad-coil-creator",
         "repo_based": true
     },
     {
