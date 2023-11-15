@@ -307,5 +307,17 @@
             "woodworking"
         ],
         "repo_based": false
+    },
+    {
+        "name": "Voron 2.4r2",
+        "description": "Assmbling a opensource 3D printer - the Voron 2.4",
+        "id": "voron24",
+        "date": "2023-05-14T00:00:00Z",
+        "topics": [
+            "3d-printing",
+            "build",
+            "electronics"
+        ],
+        "repo_based": false
     }
 ]
