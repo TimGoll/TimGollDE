@@ -1,0 +1,32 @@
+name: Rebuild website cache
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "webcontent/**"            # only content changes trigger a rebuild
+      - ".github/workflows/rebuild-cache.yml"
+  workflow_dispatch:               # adds a "Run workflow" button in the Actions tab
+  schedule:
+    - cron: "17 3 * * *"           # nightly (UTC), picks up changes in the project repos' READMEs
+
+concurrency:                       # never run two rebuilds at once, they'd fight over cache.tmp
+  group: rebuild-cache
+  cancel-in-progress: false
+
+jobs:
+  rebuild:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Wait for raw.githubusercontent.com cache
+        if: github.event_name == 'push'
+        run: sleep 300
+
+      - name: Trigger cache rebuild
+        env:
+          REBUILD_TOKEN: ${{ secrets.REBUILD_TOKEN }}
+        run: |
+          curl --fail-with-body --silent --show-error --max-time 600 \
+            --data-urlencode "token=${REBUILD_TOKEN}" \
+            https://timgoll.de/src/php/rebuild_cache.php
