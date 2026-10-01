@@ -1,11 +1,18 @@
-[{
+[
+    {
         "_c": "The first project is a special project that is used as a placeholder for the legal notice page.",
         "name": "Legal Notice",
         "id": "legal",
         "repo_based": false,
         "hidden": true
     },
-
+    {
+        "name": "Sonoff ZBMINIR2 24V Mod",
+        "description": "Sonoff ZBMINIR2 modded to run on 24V",
+        "owner": "TimGoll",
+        "id": "sonoff_zbminir2_24Vmod",
+        "repo_based": true
+    },
     {
         "name": "KiCad Coil Creator",
         "description": "A KiCad plugin that generates coils",
@@ -188,7 +195,6 @@
         "id": "frame_hanger",
         "repo_based": true
     },
-
     {
         "name": "Light Table",
         "description": "A homemade light table that can be used to trace images",
