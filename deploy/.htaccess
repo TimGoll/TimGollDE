@@ -1,5 +1,27 @@
-#always redirect to basefile (index.html)
+#serve the pages that are prerendered by src/php/rebuild_cache.php
 RewriteEngine On
 RewriteBase /
-RewriteCond %{REQUEST_URI} !.*/src/.*
-RewriteRule ^(.*)$ index.html [L,QSA,NE]
+
+#landing page
+RewriteCond %{DOCUMENT_ROOT}/src/cache/pages/index.html -f
+RewriteRule ^$ src/cache/pages/index.html [L]
+
+#project pages, with or without a trailing slash
+RewriteCond %{REQUEST_URI} !^/src/
+RewriteCond %{DOCUMENT_ROOT}/src/cache/pages/$1/index.html -f
+RewriteRule ^([^/]+)/?$ src/cache/pages/$1/index.html [L]
+
+#everything else shows the landing page, or index.html as long as the cache wasn't built yet
+RewriteCond %{REQUEST_URI} !^/src/
+RewriteCond %{DOCUMENT_ROOT}/src/cache/pages/index.html -f
+RewriteRule ^ src/cache/pages/index.html [L]
+
+RewriteCond %{REQUEST_URI} !^/src/
+RewriteRule ^ index.html [L]
+
+#mirrored svg images come from other websites, they must not run scripts when opened directly
+<IfModule mod_headers.c>
+    <FilesMatch "\.svg$">
+        Header set Content-Security-Policy "default-src 'none'; style-src 'unsafe-inline'"
+    </FilesMatch>
+</IfModule>

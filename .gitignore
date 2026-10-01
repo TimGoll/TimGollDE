@@ -1,1 +1,5 @@
 **/cache/**
+**/secrets.php
+.claude/
+**/cache.tmp/
+**/cache.old/

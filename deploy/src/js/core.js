@@ -1,265 +1,237 @@
-import * as integration from "./integration.js";
-import * as misc from "./misc.js";
-import DOMBuilder from "./dombuilder.js";
+// all pages are prerendered by the cache rebuild and work without JavaScript, this script only
+// adds the theme toggle, the topic filter and the highlighting in the table of contents
 
-var projects = [];
-var lastScrollPos = 0;
+/** THEME **/
 
-async function requestImage(name, obj) {
-    let image = await integration.requestGitHubImageFile({
-        origin: config.origin,
-        owner: config.core.owner,
-        repository: config.core.repository,
-        defaultBranch: config.core.defaultBranch,
-        file: "webcontent/assets/" + name + ".png"
-    });
+const darkQuery = window.matchMedia("(prefers-color-scheme: dark)");
 
-    if (image != undefined) {
-        obj.src = image
-    }
+function currentTheme() {
+    return document.documentElement.dataset.theme || (darkQuery.matches ? "dark" : "light");
 }
 
-/** SETUP FUNCTIONS **/
+function setupThemeToggle() {
+    for (const button of document.querySelectorAll(".theme-toggle")) {
+        button.hidden = false;
 
-function setupCore() {
-    window.document.title = config.title;
+        button.addEventListener("click", function() {
+            const theme = currentTheme() === "dark" ? "light" : "dark";
 
-    let domBuilderFooter = new DOMBuilder(document.getElementById("footer"));
+            document.documentElement.dataset.theme = theme;
 
-    domBuilderFooter
-        .build("a", { href: "/legal" })
-        .lastElement.innerHTML = "Legal Notice";
-
-    domBuilderFooter.lastElement.innerHTML += " - ";
-
-    domBuilderFooter
-        .build("a", { href: "mailto:" + config.contact })
-        .lastElement.innerHTML = "Contact";
-
-    domBuilderFooter.lastElement.innerHTML += " - ";
-
-    domBuilderFooter
-        .build("a", { href: "https://github.com/" + config.core.owner + "/" + config.core.repository, target: "_blank" })
-        .lastElement.innerHTML = "Source";
-
-    domBuilderFooter.lastElement.innerHTML += " - © " + config.copyright.startyear + "-" + new Date().getFullYear() + " by " + config.copyright.name;
-}
-
-async function setupInfo() {
-    document.getElementById("bio").innerHTML = await integration.requestCachedParsedMarkdownFile({
-        owner: config.bio.owner,
-        repository: config.bio.repository,
-        defaultBranch: config.bio.defaultBranch,
-        file: "README.html"
-    })
-}
-
-
-async function setupProjects() {
-    projects = await integration.requestCachedProjectData();
-
-    // after the project table is available, the page should be set
-    setPage(window.location.pathname.substr(1), true);
-
-    let domBuilderProjects = new DOMBuilder(document.getElementById("projects"));
-
-    for (let i = 0; i < projects.length; i++) {
-        let project = projects[i];
-
-        if (project.hidden) {
-            continue;
-        }
-
-        let domBuilderContent = domBuilderProjects
-            .build("div", { class: "mb-3 d-flex flex-content-stretch col-12 col-md-6 col-lg-4" })
-            .build("div", { class: "Box of-hidden d-flex w-100 project-list-item-item" })
-            .build("div", { class: "project-list-item-content", project: i });
-
-        let domBuilderImgArea = domBuilderContent
-            .build("div", { class: "image-box-height of-hidden img-project" })
-
-        let domBuilderImg = domBuilderImgArea
-            .build("img", { class: "object-fit-cover w-100 h-100", src: "src/img/no_icon.png" });
-
-        domBuilderImgArea
-            .build("div", { class: "date-box", innerHTML: new Date(project.date).toLocaleDateString("de-DE") });
-
-        let domBuilderText = domBuilderContent
-            .build("div", { class: "d-flex flex-dir-col flex-grow-2 p-3" });
-
-        domBuilderText
-            .build("h3", { class: "mt-0", innerHTML: project.name });
-
-        domBuilderText
-            .build("p", { class: "mb-0", innerHTML: project.description });
-
-        let domBuilderTopics = domBuilderContent
-            .build("div", { class: "d-flex flex-grow-1 p-3 pt-0 topics-area" });
-
-        for (let i = 0; i < project.topics.length; i++) {
-            let topic = project.topics[i];
-            let color = misc.stringToColor(topic)
-
-            domBuilderTopics
-                .build("div", {
-                    class: "topic-box",
-                    style: "background-color: " + color + "; color: " + misc.getTextColor(color),
-                    innerHTML: topic
-                });
-        }
-
-        domBuilderContent.lastElement.addEventListener("click", openProject);
-
-        requestImage(project.id, domBuilderImg.lastElement);
-    }
-}
-
-async function openProject(_, project_id, preventStatePush) {
-    // if a specific project should be opened this parameter is set
-    let num = -1;
-
-    if (project_id !== undefined) {
-        for (let i = 0; i < projects.length; i++) {
-            let project = projects[i];
-
-            if (project.id == project_id) {
-                num = i;
-
-                break;
-            }
-        }
-
-        // if the project id wasn't found, redirect to landing page
-        if (num == -1) {
-            closeProject();
-
-            return;
-        }
-    } else {
-        num = parseInt(this.getAttribute("project"));
-    }
-
-
-    // cache the last scroll position and reset the scroll pos to 0
-    lastScrollPos = window.scrollY;
-    window.scroll(0, 0);
-
-    // hide landing page
-    document.getElementById("landing").setAttribute("style", "display: none;")
-
-    // unhide popup
-    document.getElementById("popup").setAttribute("style", "display: block; min-height: 100%;")
-
-    let project = projects[num];
-
-    // populate
-    document.getElementById("project-title").innerHTML = project.name;
-
-    if (project.repo_based == true) {
-        document.getElementById("project-text").innerHTML = await integration.requestCachedParsedMarkdownFile({
-            owner: project.owner,
-            repository: project.id,
-            defaultBranch: project.default_branch,
-            file: "README.html"
-        });
-    } else {
-        document.getElementById("project-text").innerHTML = await integration.requestCachedParsedMarkdownFile({
-            owner: config.core.owner,
-            repository: config.core.repository,
-            defaultBranch: config.core.defaultBranch,
-            file: project.id + ".html"
+            // the choice is remembered, from now on the system setting is ignored
+            try {
+                localStorage.setItem("theme", theme);
+            } catch (e) {}
         });
     }
-
-    // fill info box
-    let projectTop = document.getElementById("project-top")
-
-    projectTop.innerHTML = "Project started at <b>" + new Date(project.date).toLocaleDateString("de-DE") + "</b>";
-
-    console.log(project);
-
-    if (project.repo_based == true) {
-        projectTop.innerHTML += " | <a href=\"//github.com/" + project.owner + "/" + project.id + "\" target=\"_blank\">See on GitHub</a>";
-    } else if (project.source !== "") {
-        projectTop.innerHTML += " | <a href=\"//github.com/" + project.source + "\" target=\"_blank\">See on GitHub</a>";
-    }
-
-    if (project.repo_based == true || project.source !== "") {
-        projectTop.innerHTML += " (" + project.commit_count + " commits)";
-    }
-
-    if (project.homepage !== "") {
-        projectTop.innerHTML += " | <a href=\"" + project.homepage + "\" target=\"_blank\">See homepage</a>";
-    }
-
-    // fill topics box
-    let projectFooter = document.getElementById("project-footer")
-
-    projectFooter.innerHTML = "<b>Topics: </b>";
-
-    for (let i = 0; i < project.topics.length; i++) {
-        if (i != 0) {
-            projectFooter.innerHTML += ", ";
-        }
-
-        projectFooter.innerHTML += project.topics[i];
-    }
-
-    // update browser history
-    if (!preventStatePush) {
-        window.history.pushState({}, "", project.id);
-    }
-    window.document.title = config.title + " // " + project.name;
 }
 
-function closeProject(_, preventStatePush) {
-    document.getElementById("project-title").innerHTML = "";
-    document.getElementById("project-text").innerHTML = "";
+/** PROJECT LIST **/
 
-    document.getElementById("landing").setAttribute("style", "display: block;");
-    document.getElementById("popup").setAttribute("style", "display: none;");
-    window.scroll(0, lastScrollPos);
+// every sort key starts with its natural order, the button reverses it
+const SORT_ORDERS = { date: "desc", name: "asc", commits: "desc" };
 
-    if (!preventStatePush) {
-        window.history.pushState({}, "", "/");
+// compares two cards, projects without a value are always at the end of the list
+function compareCards(a, b, key, order) {
+    const valueA = a.dataset[key];
+    const valueB = b.dataset[key];
+
+    if (valueA === "" || valueB === "") {
+        return (valueA === "") - (valueB === "");
     }
-    window.document.title = config.title;
-}
 
-function setPage(project_id, preventStatePush) {
-    if (project_id != "") {
-        openProject(undefined, project_id, preventStatePush);
+    let result;
+
+    if (key === "name") {
+        result = valueA.localeCompare(valueB, undefined, { sensitivity: "base", numeric: true });
+    } else if (key === "commits") {
+        result = Number(valueA) - Number(valueB);
     } else {
-        closeProject(undefined, preventStatePush);
+        result = valueA < valueB ? -1 : (valueA > valueB ? 1 : 0);
     }
+
+    return order === "asc" ? result : -result;
 }
 
-window.addEventListener("load", function() {
-    document.getElementById("button-close").addEventListener("mouseup", closeProject);
-})
+function setupProjectList() {
+    const filter = document.querySelector(".topic-filter");
 
-window.addEventListener('keyup', function(e) {
-    if (e.defaultPrevented) {
+    if (!filter) {
         return;
     }
 
-    var key = e.key || e.keyCode;
+    const chips = [...filter.querySelectorAll(".chip")];
+    const grid = document.querySelector(".project-grid");
+    const cards = [...grid.querySelectorAll(".card")];
+    const count = document.querySelector(".project-count");
+    const empty = document.querySelector(".project-empty");
+    const sortKey = document.querySelector(".sort-key");
+    const sortOrder = document.querySelector(".sort-order");
 
-    if (key === 'Escape' || key === 'Esc' || key === 27) {
-        closeProject();
+    // the selection and the order are kept in the url, this way they survive going back and can be shared
+    const params = new URLSearchParams(window.location.search);
+    const selected = new Set(params.getAll("topic"));
+
+    let key = Object.hasOwn(SORT_ORDERS, params.get("sort") ?? "") ? params.get("sort") : "date";
+    let order = params.get("order") === "asc" || params.get("order") === "desc" ? params.get("order") : SORT_ORDERS[key];
+
+    function sort() {
+        sortKey.value = key;
+        sortOrder.dataset.order = order;
+        sortOrder.setAttribute("aria-label", order === "asc"
+            ? "Sort ascending, switch to descending"
+            : "Sort descending, switch to ascending");
+
+        // the original position keeps the order of equal cards stable
+        const sorted = cards
+            .map((card, i) => [card, i])
+            .sort((a, b) => compareCards(a[0], b[0], key, order) || a[1] - b[1])
+            .map((entry) => entry[0]);
+
+        grid.append(...sorted);
     }
-});
 
-//catch history change events
-window.onpopstate = function() {
-    setPage(window.location.pathname.substr(1), true);
+    function update() {
+        for (const chip of chips) {
+            const topic = chip.dataset.topic;
 
-    // hacky solution to guarantee that the scrolling is reset
-    window.setTimeout(function() {
-        window.scroll(0, lastScrollPos);
-    }, 0);
-};
+            chip.setAttribute("aria-pressed", String(topic === "" ? selected.size === 0 : selected.has(topic)));
+        }
 
-setupCore();
-setupInfo();
-setupProjects();
+        // a project is shown if it has all of the selected topics
+        let visible = 0;
+
+        for (const card of cards) {
+            const topics = JSON.parse(card.dataset.topics);
+            const show = [...selected].every((topic) => topics.includes(topic));
+
+            card.hidden = !show;
+            visible += show ? 1 : 0;
+        }
+
+        count.textContent = visible + " / " + cards.length;
+        empty.hidden = visible > 0;
+
+        // topics that no visible project has would lead to an empty list, they are disabled,
+        // selected topics always stay clickable so that they can be removed again
+        const available = new Set(cards.filter((card) => !card.hidden).flatMap((card) => JSON.parse(card.dataset.topics)));
+
+        for (const chip of chips) {
+            const topic = chip.dataset.topic;
+
+            chip.disabled = topic !== "" && !selected.has(topic) && !available.has(topic);
+        }
+
+        const query = new URLSearchParams();
+
+        for (const topic of selected) {
+            query.append("topic", topic);
+        }
+
+        // the default order doesn't need to be in the url
+        if (key !== "date" || order !== SORT_ORDERS.date) {
+            query.set("sort", key);
+            query.set("order", order);
+        }
+
+        const search = query.toString();
+
+        window.history.replaceState({}, "", window.location.pathname + (search ? "?" + search : "") + window.location.hash);
+    }
+
+    sortKey.addEventListener("change", function() {
+        key = sortKey.value;
+        order = SORT_ORDERS[key];
+
+        sort();
+        update();
+    });
+
+    sortOrder.addEventListener("click", function() {
+        order = order === "asc" ? "desc" : "asc";
+
+        sort();
+        update();
+    });
+
+    filter.addEventListener("click", function(e) {
+        const chip = e.target.closest(".chip");
+
+        if (!chip) {
+            return;
+        }
+
+        const topic = chip.dataset.topic;
+
+        if (topic === "") {
+            selected.clear();
+        } else if (selected.has(topic)) {
+            selected.delete(topic);
+        } else {
+            selected.add(topic);
+        }
+
+        update();
+    });
+
+    // topics that don't exist anymore are ignored
+    for (const topic of [...selected]) {
+        if (!chips.some((chip) => chip.dataset.topic === topic)) {
+            selected.delete(topic);
+        }
+    }
+
+    filter.hidden = false;
+    document.querySelector(".sort-controls").hidden = false;
+    document.querySelector(".sort-static").hidden = true;
+
+    sort();
+    update();
+}
+
+/** TABLE OF CONTENTS **/
+
+function setupTableOfContents() {
+    const links = [...document.querySelectorAll(".toc a")];
+
+    if (links.length === 0) {
+        return;
+    }
+
+    const headings = links.map((link) => document.getElementById(decodeURIComponent(link.hash.slice(1)))).filter(Boolean);
+
+    // the current section is the last heading that was scrolled past the top of the window
+    function update() {
+        let current = 0;
+
+        headings.forEach(function(heading, i) {
+            if (heading.getBoundingClientRect().top < 120) {
+                current = i;
+            }
+        });
+
+        // the last sections can't reach the top of the window, at the end of the page the last visible one is selected
+        if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+            headings.forEach(function(heading, i) {
+                if (heading.getBoundingClientRect().top < window.innerHeight) {
+                    current = i;
+                }
+            });
+        }
+
+        links.forEach(function(link, i) {
+            if (i === current) {
+                link.setAttribute("aria-current", "true");
+            } else {
+                link.removeAttribute("aria-current");
+            }
+        });
+    }
+
+    window.addEventListener("scroll", update, { passive: true });
+    update();
+}
+
+setupThemeToggle();
+setupProjectList();
+setupTableOfContents();

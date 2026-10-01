@@ -1,89 +1,36 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
+
+<!--
+    The pages of this website are written into src/cache/pages/ by src/php/rebuild_cache.php.
+    This file is only shown as long as the cache wasn't built yet.
+-->
 
 <head>
-    <link rel="shortcut icon" type="image/x-icon" href="src/img/favicon.ico" />
-
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
 
-    <link rel="stylesheet" href="src/css/github-markdown.css">
-    <link rel="stylesheet" href="src/css/custom-main.css">
+    <title>Website not built yet</title>
+
+    <link rel="shortcut icon" type="image/x-icon" href="/src/img/favicon.ico" />
+
+    <link rel="stylesheet" href="/src/css/github-markdown.css">
+    <link rel="stylesheet" href="/src/css/custom-main.css">
 
     <style>
-        .markdown-body,
-        .popup-header-content {
-            min-width: 200px;
-            max-width: 980px;
+        :root {
+            --page-width: 980px;
         }
     </style>
-
-    <script>
-        var config = {
-            origin: "https://raw.githubusercontent.com",
-            core: {
-                owner: "TimGoll",
-                repository: "TimGollDE",
-                defaultBranch: "main"
-            },
-            bio: {
-                owner: "TimGoll",
-                repository: "TimGoll",
-                defaultBranch: "main"
-            },
-            title: "Tim Goll - Portfolio",
-            contact: "contact@timgoll.de",
-            copyright: {
-                startyear: 2014,
-                name: "Tim Goll"
-            }
-        };
-    </script>
-
-    <script type="module" src="src/js/core.js"></script>
-
-    <meta charset="UTF-8">
-    <meta http-equiv="language" content="en">
-
-
 </head>
 
 <body>
-    <div id="landing">
-        <div id="bio" class="markdown-body mb-3 mt-3">
-        </div>
+    <div class="page-width" style="padding-top: 44px">
+        <div class="panel markdown-body" style="padding: 44px 45px">
+            <h1>Website not built yet</h1>
 
-        <div class="markdown-body mb-3">
-            <div>
-                <h1 dir="auto" class="mt-0">
-                    My Projects
-                </h1>
-
-                <div id="projects" class="d-flex flex-wrap gutter-condensed mb-2 pl-0">
-                </div>
-            </div>
-        </div>
-
-        <div id="footer" class="markdown-body mb-3">
-        </div>
-    </div>
-
-    <div id="popup" class="markdown-body" style="display: none">
-        <div class="fullpanel">
-            <div class="popup-header">
-                <div class="popup-header-content">
-                    <div class="popup-header-title">
-                        <h1 id="project-title" class="mt-3 ml-3 border-none"></h1>
-                    </div>
-
-                    <div title="Close" id="button-close" class="popup-header-button"></div>
-
-                </div>
-            </div>
-
-            <div class="markdown-body popup-body">
-                <div id="project-top" class="project-info-box"></div>
-                <div id="project-text"></div>
-                <div id="project-footer" class="project-info-box"></div>
-            </div>
+            <p>The pages of this website are created when the cache is rebuilt. Please run <code>src/php/rebuild_cache.php</code> as described in the README.</p>
         </div>
     </div>
 </body>
