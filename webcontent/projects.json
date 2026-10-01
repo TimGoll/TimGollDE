@@ -319,5 +319,16 @@
             "electronics"
         ],
         "repo_based": false
+    },
+    {
+        "name": "Luxman PD277 Repair",
+        "description": "Repairing the direct drive electronics of the Luxman PD277",
+        "id": "luxman_pd277_repair",
+        "date": "2023-10-26T00:00:00Z",
+        "topics": [
+            "electronics",
+            "fix"
+        ],
+        "repo_based": false
     }
 ]
