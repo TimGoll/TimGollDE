@@ -201,7 +201,6 @@
         "id": "light_table",
         "date": "2015-12-22T00:00:00Z",
         "topics": [
-            "build",
             "electronics",
             "woodworking"
         ],
@@ -214,7 +213,6 @@
         "date": "2017-01-18T00:00:00Z",
         "topics": [
             "3d-printing",
-            "build",
             "electronics",
             "raspberry-pi"
         ],
@@ -240,7 +238,6 @@
         "id": "elec_workplace",
         "date": "2017-10-15T00:00:00Z",
         "topics": [
-            "build",
             "woodworking"
         ],
         "repo_based": false
@@ -297,7 +294,6 @@
         "id": "shelf",
         "date": "2014-01-01T00:00:00Z",
         "topics": [
-            "build",
             "electronics",
             "woodworking"
         ],
@@ -309,7 +305,6 @@
         "id": "balcony",
         "date": "2022-05-19T00:00:00Z",
         "topics": [
-            "build",
             "woodworking"
         ],
         "repo_based": false
@@ -321,7 +316,6 @@
         "date": "2023-05-14T00:00:00Z",
         "topics": [
             "3d-printing",
-            "build",
             "electronics"
         ],
         "repo_based": false
