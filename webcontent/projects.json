@@ -311,7 +311,7 @@
     },
     {
         "name": "Voron 2.4 3D Printer",
-        "description": "Sourcing and assembling a opensource 3D printer - the Voron 2.4",
+        "description": "Sourcing and assembling an opensource 3D printer - the Voron 2.4",
         "id": "voron24",
         "date": "2023-05-14T00:00:00Z",
         "topics": [
@@ -322,9 +322,9 @@
     },
     {
         "name": "Luxman PD277 Repair",
-        "description": "Repairing the direct drive electronics of the Luxman PD277",
+        "description": "Repairing the direct drive electronics of the Luxman PD277 record player",
         "id": "luxman_pd277_repair",
-        "date": "2023-10-26T00:00:00Z",
+        "date": "2025-10-26T00:00:00Z",
         "topics": [
             "electronics",
             "fix"
